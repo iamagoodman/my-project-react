@@ -3,10 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
+import { createStore, applyMiddleware } from "redux";
+import { createEpicMiddleware } from "redux-observable";
+import { Provider } from 'react-redux';
 
+import { rootEpic } from './stores/epics';
+import rootReducer from './stores/reducers';
+console.log(rootEpic);
+console.log(rootReducer);
+
+const epicMiddleWare = createEpicMiddleware(rootEipc);
+const store = createStore(rootReducer, applyMiddleware(epicMiddleWare))
 ReactDOM.render(
   // <React.StrictMode>
-    <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   // </React.StrictMode>,
   document.getElementById('root')
 );
