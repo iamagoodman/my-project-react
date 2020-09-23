@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { ConnectedRouter } from "connected-react-router";
+import { Provider } from "react-redux";
+import { ConfigProvider } from "antd";
+import configureStore from "./stores/configureStore";
 // import * as serviceWorker from './serviceWorker';
+export const store = configureStore();
 ReactDOM.render(
-  // <React.StrictMode>
-  // <Provider store={store}>
+  <Provider store={store}>
     <App />,
-  // </Provider>,
-  // </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

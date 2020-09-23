@@ -3,8 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 import { Button } from 'antd';
 import { createSelector } from "reselect";
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { RootState } from "./stores/reducers";
+
 function App() {
+  const mapState = createSelector(
+    (state: RootState) => state,
+    ({app: {name, age}}) => ({name,age})
+  );
+  const { name, age } = useSelector(mapState);
+  console.log(name, age);
   return (
     <div className="App">
       <header className="App-header">
@@ -13,6 +21,8 @@ function App() {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <Button type='primary'>click me</Button>
+        <p>my name is{name}</p>
+        <p>i am {age} years old</p>
         <a
           className="App-link"
           href="https://reactjs.org"

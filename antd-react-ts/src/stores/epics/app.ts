@@ -16,9 +16,9 @@ import { fetchData } from '../../servers';
 const getData: Epic = (action$, state) =>
   action$.pipe(
     filter(isActionOf(doFetchData.request)),
-    mergeMap((payload: RequestDataType) => {
-      const { name, age } = payload;
-      return fetchData({name, age}).pipe(
+    mergeMap(() => {
+      // const { name, age } = payload;
+      return fetchData().pipe(
         map((data: ResponseDataType)=>{
           doFetchData.success({...data})
         }),
@@ -29,5 +29,6 @@ const getData: Epic = (action$, state) =>
       )
     })
   )
+
 
 export default [getData];
