@@ -1,17 +1,18 @@
-export const WIKI_REQUEST = 'WIKI_REQUEST';
-export const WIKI_SUCCESS = 'WIKI_SUCCESS';
-export const WIKI_FAIL = 'WIKI_FAIL';
+import * as ActionType from "../../constans/actionType";
+import { createAction, createAsyncAction} from "typesafe-actions";
+import {
+  RequestDataType,
+  ResponseDataType,
+  FailMessage
+} from "../../types";
 
-export const fetchWiKi = () => ({
-  type: WIKI_REQUEST
-});
+export const doChangeNumber = createAction(
+  ActionType.DO_CHANGE_NUMBER,
+  action => (type: string, number: number) => action({type, number})
+);
 
-export const fetchWiKiSuccess = (wikis) => ({
-  type: WIKI_SUCCESS,
-  payload: wikis
-});
-
-export const fetchWiKiFail = (message) => ({
-  type: WIKI_FAIL,
-  payload: message
-});
+export const doFetchData = createAsyncAction(
+  ActionType.FETCH_DATA_REQUEST,
+  ActionType.FETCH_DATA_SUCCESS,
+  ActionType.FETCH_DATA_FAILURE
+)<RequestDataType, ResponseDataType, FailMessage>();
