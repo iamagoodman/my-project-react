@@ -1,10 +1,15 @@
 import * as ActionType from "../../constans/actionType";
-import { createAction, createAsyncAction} from "typesafe-actions";
+import { action, createAction, createAsyncAction} from "typesafe-actions";
 import {
   RequestDataType,
   ResponseDataType,
   FailMessage
 } from "../../types";
+
+export const doChangeName = createAction(
+  ActionType.DO_CHANGE_NAME,
+  action => (name: string) => action(name)
+);
 
 export const doChangeNumber = createAction(
   ActionType.DO_CHANGE_NUMBER,

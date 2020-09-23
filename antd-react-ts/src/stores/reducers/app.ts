@@ -2,7 +2,7 @@ import { getType } from "typesafe-actions";     // 判断动作类型
 import update from 'immutability-helper';       // 用于更新不可变值state
 import {
   doFetchData,
-  // doChangeNumber
+  doChangeName
 } from "../actions";
 import { Action } from "../../types";
 
@@ -22,12 +22,13 @@ const initialState: AppState = {
 }
 
 export const appReducer = (state: AppState = initialState,action: Action) => {
+  console.log(action);
+  console.log(typeof doChangeName);
   switch (action.type) {
-    // case getType(doChangeNumber):
-    //   return update(state,{
-    //     number: {$set: action.payload.number},
-    //     type: {$set: action.payload.type}
-    //   });
+    case getType(doChangeName):
+      return update(state,{
+        name: {$set: action.payload},
+      });
     case getType(doFetchData.success):
       return update(state,{
         data: {$set: action.payload}

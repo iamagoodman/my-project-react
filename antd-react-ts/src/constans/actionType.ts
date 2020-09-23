@@ -10,3 +10,6 @@ export type FETCH_DATA_FAILURE = typeof FETCH_DATA_FAILURE;
 export const DO_CHANGE_NUMBER = 'DO_CHANGE_NUMBER';
 export type DO_CHANGE_NUMBER = typeof DO_CHANGE_NUMBER;
 //  同步操作，只需要一种状态
+
+export const DO_CHANGE_NAME = 'DO_CHANGE_NAME';
+export type DO_CHANGE_NAME = typeof DO_CHANGE_NAME;

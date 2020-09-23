@@ -5,14 +5,14 @@ import { Button } from 'antd';
 import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";
-
+import { doChangeName } from "./stores/actions";
 function App() {
   const mapState = createSelector(
     (state: RootState) => state,
     ({app: {name, age}}) => ({name,age})
   );
   const { name, age } = useSelector(mapState);
-  console.log(name, age);
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
@@ -20,7 +20,14 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Button type='primary'>click me</Button>
+        <Button
+          type='primary'
+          onClick={()=>{
+            dispatch(doChangeName('frank'))
+          }}
+        >
+          click me
+        </Button>
         <p>my name is{name}</p>
         <p>i am {age} years old</p>
         <a
