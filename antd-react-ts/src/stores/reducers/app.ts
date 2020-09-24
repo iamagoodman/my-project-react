@@ -22,8 +22,6 @@ const initialState: AppState = {
 }
 
 export const appReducer = (state: AppState = initialState,action: Action) => {
-  console.log(action);
-  console.log(typeof doChangeName);
   switch (action.type) {
     case getType(doChangeName):
       return update(state,{
