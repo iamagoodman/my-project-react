@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";
 import { doChangeName } from "./stores/actions";
 import ButtonComponent from './components/btncom';
+import Router from "./router";
 function App() {
   const mapState = createSelector(
     (state: RootState) => state,
