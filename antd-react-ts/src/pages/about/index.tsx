@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from 'antd';
+import React from "react";
+import { Button } from "antd";
 
 export default function () {
   return (
     <div>
       <Button
         type='primary'
-        onClick={() => {console.log('to about')}}
+        onClick={() => {console.log('to home')}}
       >
-        to about
+        to home
       </Button>
     </div>
   );

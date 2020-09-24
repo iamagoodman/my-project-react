@@ -6,6 +6,7 @@ import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";
 import { doChangeName } from "./stores/actions";
+import ButtonComponent from './components/btncom';
 function App() {
   const mapState = createSelector(
     (state: RootState) => state,
@@ -28,6 +29,7 @@ function App() {
         >
           click me
         </Button>
+        <ButtonComponent />
         <p>my name is{name}</p>
         <p>i am {age} years old</p>
         <a
