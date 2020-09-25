@@ -1,26 +1,30 @@
 import React from "react";
 import { Suspense, lazy } from 'react';
-import { Switch, Route } from 'react-router-dom';
-// import Layout from '../pages/layout';
+import { Switch, Route, Router, withRouter, BrowserRouter } from 'react-router-dom';
+import Layout from '../pages/layout/layout';
 import routes from './routes';
+import { RouteItem } from "@/types";
+import Home from '../pages/home';
 
 function CoreRoute() {
   return (
     <div>
-      {/*<Layout>*/}
+      <Layout>
         <Suspense fallback='loading..........'>
-          <Switch>
-            {routes.map(({ key, ...props})=>{
-              return <Route key={key} {...props} exact />
-            })}
-          </Switch>
+          <BrowserRouter>
+            <Switch>
+              {routes.map(({key, children, ...props}:RouteItem) => {
+                return <Route key={key} {...props} exact/>
+              })}
+            </Switch>
+          </BrowserRouter>
         </Suspense>
-      {/*</Layout>*/}
+      </Layout>
     </div>
   );
 }
 
-function Router() {
+function RouterAll() {
   return (
     <Switch>
       <Route path='/' component={CoreRoute} />
@@ -29,4 +33,4 @@ function Router() {
 }
 
 
-export default React.memo(Router);
+export default React.memo(RouterAll);

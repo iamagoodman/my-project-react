@@ -6,11 +6,17 @@ import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import { ConfigProvider } from "antd";
 import configureStore from "./stores/configureStore";
+import { history } from "./utils/util";
+import zhCN from 'antd/es/locale/zh_CN';
 // import * as serviceWorker from './serviceWorker';
 export const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
-    <App />,
+    {/*<ConnectedRouter history={history}>*/}
+      <ConfigProvider locale={zhCN}>
+        <App />
+      </ConfigProvider>
+    {/*</ConnectedRouter>*/}
   </Provider>,
   document.getElementById('root')
 );

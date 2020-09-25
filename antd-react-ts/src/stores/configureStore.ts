@@ -8,8 +8,8 @@ import { history } from '../utils/util'
 const routerMiddlewareInstance = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware();
 
-// const composeEnhancers = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const composeEnhancers = compose;
+const composeEnhancers = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+// const composeEnhancers = compose;
 
 export default function configureStore(initialState: object = {}): Store {
   const middlewares = [routerMiddlewareInstance,epicMiddleware];

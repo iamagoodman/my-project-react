@@ -1,6 +1,15 @@
 import * as actions from '../stores/actions';  // 不太明白为什么 所有的动作又导入接口里
 import { ActionType } from "typesafe-actions";
 
+
+export interface RouteItem {
+  key: string;
+  path: string;
+  component: any;
+  auth?: boolean;
+  children?: RouteItem[];
+}
+
 export type Action = ActionType<typeof actions>;
 // 不太明白  这里是什么作用
 export interface RequestDataType {

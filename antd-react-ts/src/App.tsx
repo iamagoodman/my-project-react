@@ -5,9 +5,10 @@ import { Button } from 'antd';
 import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";
+import { BrowserRouter } from "react-router-dom";
 import { doChangeName } from "./stores/actions";
 import ButtonComponent from './components/btncom';
-import Router from "./router";
+import Routes from "./router";
 function App() {
   const mapState = createSelector(
     (state: RootState) => state,
@@ -17,31 +18,9 @@ function App() {
   const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Button
-          type='primary'
-          onClick={()=>{
-            dispatch(doChangeName('frank'))
-          }}
-        >
-          click me
-        </Button>
-        <ButtonComponent />
-        <p>my name is{name}</p>
-        <p>i am {age} years old</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </div>
   );
 }

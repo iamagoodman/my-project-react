@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
+import { Link } from "react-router-dom";
 
 export default function () {
   return (
@@ -10,6 +11,7 @@ export default function () {
       >
         to about
       </Button>
+      <Link to='/about'>to about</Link>
     </div>
   );
 }
