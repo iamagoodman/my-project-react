@@ -5,7 +5,8 @@ import { createSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
 import {RootState} from "@/stores/reducers";
 import { doChangeName } from "../../stores/actions";
-
+import style from './index.module.less';
+import './index.less';
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state,
@@ -22,8 +23,9 @@ export default function () {
         to about
       </Button>
       <Link to='/about'>to about</Link>
-      <p>my name is {name}</p>
+      <p className={style.p}>my name is {name}</p>
       <Button
+        className={style.resetbtn}
         type='primary'
         onClick={()=>{dispatch(doChangeName('kakakaka'))}}
       >

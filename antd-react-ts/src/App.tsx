@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './styles/layout.less';
 import { Button } from 'antd';
 import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
