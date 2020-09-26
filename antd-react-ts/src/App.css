@@ -36,5 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+#root {
+  width: 1002px;
+  height: 620px;
+  position: absolute;
+  top: 0;left: 0;bottom: 0;right: 0;
+  margin: auto;
+  box-shadow: #666 0px 0px 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 @import '~antd/dist/antd.css';
 
