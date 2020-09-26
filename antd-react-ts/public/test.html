@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2100699_1krk3halmqf.css">
+</head>
+<body>
+    <i class="iconfont iconedit" style="font-size: 28px;color: red"></i>
+</body>
+<script>
+    var db;
+    var request;
+    function openDatabase(baseName,version) {
+       request = window.indexedDB.open(baseName,version);
+    }
+    openDatabase('music-player',1);
+    request.onerror = function (event) {
+        console.log(event);
+    }
+    request.onsuccess = function (event) {
+        db = event.result;
+        createTable(db,'person',{keyPath:'id'})
+    }
+    request.onupgradeneeded = function (event) {
+        db = event.target.result
+    }
+    function createTable(db,table_name,keyPath) {
+        var objectStore;
+        if(!db.objectStoreNames.contains(table_name)){
+          objectStore = db.createObjectStore(table_name,keyPath);
+          objectStore.createIndex('name','name',{unique:false});
+          objectStore.createIndex('sex','sex',{unique:true});
+        }
+    }
+    function add(table_name) {
+      var request = db.transaction([table_name], 'readwrite')
+        .objectStore(table_name)
+        .add({ id: 1, name: '张三', sex: '男' });
+      request.onsuccess = function (event) {
+        console.log('数据写入成功');
+      };
+      request.onerror = function (event) {
+        console.log('数据写入失败');
+      }
+    }
+    add('person');
+    function read(table_name) {
+      var transaction = db.transaction([table_name]);
+      var objectStore = transaction.objectStore(table_name);
+      var request = objectStore.get(1);
+      request.onerror = function(event) {
+        console.log('事务失败');
+      };
+      request.onsuccess = function( event) {
+        if (request.result) {
+          console.log('Name: ' + request.result.name);
+          console.log('Age: ' + request.result.age);
+          console.log('Email: ' + request.result.email);
+        } else {
+          console.log('未获得数据记录');
+        }
+      };
+    }
+    read('person');
+</script>
+</html>
