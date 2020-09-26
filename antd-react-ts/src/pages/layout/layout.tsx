@@ -2,22 +2,17 @@ import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Layout, Breadcrumb, Menu } from "antd";
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-const { Header, Sider, Content } = Layout;
+import LayoutHeader from './header';
+import style from './index.module.less';
+const { Sider, Content, Footer } = Layout;
 const { SubMenu } = Menu;
 interface Props extends RouteComponentProps{
   children: React.ReactNode
 }
 function myLayout(props: Props) {
   return (
-    <Layout>
-      <Header className="header">
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
-      </Header>
+    <Layout className={style.mp_layout}>
+      <LayoutHeader />
       <Layout>
         <Sider width={200} className="site-layout-background">
           <Menu
@@ -64,6 +59,9 @@ function myLayout(props: Props) {
           </Content>
         </Layout>
       </Layout>
+      <Footer className={`footer ${style.mp_layout_footer}`}>
+        <div>footer</div>
+      </Footer>
     </Layout>
   );
 }
