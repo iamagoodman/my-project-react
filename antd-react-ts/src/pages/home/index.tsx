@@ -38,6 +38,7 @@ export default function () {
         onClick={()=>{dispatch(doChangeName('kakakaka'))}}
       >
         change name</Button>
+      <div className={style.fulldiv}>fdskajklfsjaklfjsdal</div>
     </div>
   );
 }
