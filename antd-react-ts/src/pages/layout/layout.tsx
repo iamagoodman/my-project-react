@@ -15,12 +15,10 @@ function myLayout(props: Props) {
       <LayoutHeader />
       <Layout>
         <LayoutSilder />
-        <Layout style={{ padding: '0 24px 24px' }} className={style.mp_layout_hidescroll}>
+        <Layout style={{ padding: '20px 30px' }} className={style.mp_layout_hidescroll}>
           <Content
             className="site-layout-background"
             style={{
-              padding: 24,
-              margin: 0,
               minHeight: 280,
             }}
           >

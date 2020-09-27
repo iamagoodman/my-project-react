@@ -1,10 +1,6 @@
 import React from 'react';
+import { Iconprops } from "../../types";
 
-interface Iconprops {
-  name: string;
-  size?: number;
-  color?: string;
-}
 export const IconFont = function (props: Iconprops) {
   return (
     <i

@@ -1,7 +1,3 @@
-// import IconFont from './iconfont';
-//
-// export default {
-//   IconFont
-// }
-
+// 共用小组件
 export * from './iconfont';
+export * from './card';

@@ -7,6 +7,11 @@ export interface Iconprops {
   color?: string;
 }
 
+export interface Cardprops {
+  src: string;
+  margin?: any;
+}
+
 export interface RouteItem {
   key: string;
   path: string;
