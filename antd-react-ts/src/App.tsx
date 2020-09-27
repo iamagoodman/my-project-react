@@ -1,13 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import './styles/layout.less';
-import { Button } from 'antd';
+import './App.less';
+import './styles/Global.less';
 import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";
 import { BrowserRouter } from "react-router-dom";
-import { doChangeName } from "./stores/actions";
 import Routes from "./router";
 function App() {
   const mapState = createSelector(

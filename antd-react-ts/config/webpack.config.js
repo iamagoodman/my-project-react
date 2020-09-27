@@ -316,24 +316,40 @@ module.exports = function(webpackEnv) {
             {
               test: lessRegex,
               exclude: lessModuleRegex,
-              use: getStyleLoaders(
+              use: [
+                ...getStyleLoaders(
+                  {
+                    importLoaders: 3,
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                  },
+                  'less-loader'
+                ),
                 {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
-                'less-loader'
-              ),
+                  loader: 'style-resources-loader',
+                  options: {
+                    patterns: path.resolve(__dirname, '../src/styles/Global.less'),
+                  }
+                }
+              ],
               sideEffects: true,
             },
             {
               test: lessModuleRegex,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap,
-                modules: {
-                  getLocalIdent: getCSSModuleLocalIdent,
-                },
-              }),
+              use: [
+                ...getStyleLoaders({
+                  importLoaders: 1,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                },'less-loader'),
+                {
+                  loader: 'style-resources-loader',
+                  options: {
+                    patterns: path.resolve(__dirname, '../src/styles/Global.less'),
+                  }
+                }
+              ]
             },
             {
               test: sassRegex,

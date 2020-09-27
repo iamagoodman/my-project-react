@@ -1,12 +1,11 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import LayoutHeader from './header';
 import LayoutSilder from './sider';
 import LayoutFooter from './footer';
 import style from './index.module.less';
-const { Sider, Content, Footer } = Layout;
-const { SubMenu } = Menu;
+const { Content } = Layout;
 interface Props extends RouteComponentProps{
   children: React.ReactNode
 }

@@ -8,7 +8,6 @@ import { doChangeName } from '../../stores/actions';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { IconFont } from "../../components";
 import style from './index.module.less';
-import './index.less';
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state,

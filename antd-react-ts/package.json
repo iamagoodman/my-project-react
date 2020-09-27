@@ -165,5 +165,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "style-resources-loader": "^1.3.3"
   }
 }
