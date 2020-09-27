@@ -18,6 +18,7 @@ export default function () {
   const MyIcon = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/font_2100203_2yi3ujd54af.js', // 在 iconfont.cn 上生成
   });
+  const str = 'development branch first commit'
   const imgList = [
     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601208119559&di=474784855fd67168850419972ba5c1d4&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2F50%2Fcbd75c5e2288be14ee3f21c289ca249f_hd.jpg',
     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601208119559&di=958e84176bd7750e870db29939e0c965&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201607%2F04%2F20160704153331_LFxdR.thumb.700_0.jpeg',
