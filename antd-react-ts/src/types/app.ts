@@ -12,6 +12,12 @@ export interface Cardprops {
   margin?: any;
 }
 
+export interface PlayNumProps {
+  playNum: number;
+  desc: string;
+  card: Cardprops
+}
+
 export interface RouteItem {
   key: string;
   path: string;

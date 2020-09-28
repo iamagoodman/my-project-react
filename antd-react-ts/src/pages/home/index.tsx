@@ -61,23 +61,6 @@ export default function () {
           <span>推荐歌单</span>
           <IconFont name='iconarrow-right-bold' />
         </div>
-        <div className={style.content_list}>
-          <div className={style.content_item}>
-            <img src={require('../../imgs/card-1.jpeg')} alt=""/>
-          </div>
-          <div className={style.content_item}>
-            <img src={require('../../imgs/card-2.jpeg')} alt=""/>
-          </div>
-          <div className={style.content_item}>
-            <img src={require('../../imgs/card-3.jpeg')} alt=""/>
-          </div>
-          <div className={style.content_item}>
-            <img src={require('../../imgs/card-4.jpeg')} alt=""/>
-          </div>
-          <div className={`${style.content_item} ${style.content_item_right}`}>
-            <img src={require('../../imgs/card-5.jpeg')} alt=""/>
-          </div>
-        </div>
         {
           imgData.map((imgList,key) => (
             <div key={key} className={style.content_list}>
