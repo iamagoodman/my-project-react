@@ -51,8 +51,6 @@
     max-width: 100%;
   }
 }
-
-
 // header style end
 
 // sider style start
@@ -62,8 +60,21 @@
     background: @sider_bg;
   }
 }
-.my_menu_item_active {
-  color: @sider_font_color_active;
+.my_sider_menu_item {
+  span {
+    color: @sider_font_color;
+  }
+  i {
+    color: @sider_font_color;
+  }
+}
+.my_sider_menu_item_active {
+  span {
+    color: @sider_font_color_active;
+  }
+  i {
+    color: @sider_font_color_active;
+  }
   background: @sider_item_bg;
 }
 .icon_container {

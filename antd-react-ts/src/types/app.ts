@@ -7,15 +7,21 @@ export interface Iconprops {
   color?: string;
 }
 
+export interface CardInformation {
+  playnum: number;
+  desc: string;
+}
+
 export interface Cardprops {
   src: string;
   margin?: any;
+  type: string;
+  data?: CardInformation;
 }
 
 export interface PlayNumProps {
-  playNum: number;
-  desc: string;
-  card: Cardprops
+  playNum?: number;
+  desc?: string;
 }
 
 export interface RouteItem {

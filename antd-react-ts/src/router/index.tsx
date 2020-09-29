@@ -1,6 +1,6 @@
 import React from "react";
 import { Suspense, lazy } from 'react';
-import { Switch, Route, Router, withRouter, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, Router, withRouter, BrowserRouter, HashRouter } from 'react-router-dom';
 import Layout from '../pages/layout/layout';
 import routes from './routes';
 import { RouteItem } from "@/types";
@@ -11,13 +11,13 @@ function CoreRoute() {
     <div>
       <Layout>
         <Suspense fallback='loading..........'>
-          <BrowserRouter>
+          {/*<BrowserRouter forceRefresh basename='/'>*/}
             <Switch>
               {routes.map(({key, children, ...props}:RouteItem) => {
                 return <Route key={key} {...props} exact/>
               })}
             </Switch>
-          </BrowserRouter>
+          {/*</BrowserRouter>*/}
         </Suspense>
       </Layout>
     </div>
@@ -26,11 +26,12 @@ function CoreRoute() {
 
 function RouterAll() {
   return (
-    <Switch>
-      <Route path='/' component={CoreRoute} />
-    </Switch>
+    <div></div>
+    // <Switch>
+    //   <Route path='/' component={CoreRoute} />
+    // </Switch>
   )
 }
 
 
-export default React.memo(RouterAll);
+export default React.memo(CoreRoute);

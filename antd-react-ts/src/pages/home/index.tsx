@@ -1,11 +1,11 @@
 import React from 'react';
 import { Carousel } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { createSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import {RootState} from '@/stores/reducers';
 // import { createFromIconfontCN } from '@ant-design/icons';
-import { IconFont, Card } from "../../components";
+import { IconFont, Card, PlayNumCard } from "../../components";
 import style from './index.module.less';
 export default function () {
   const mapState = createSelector(
@@ -66,7 +66,12 @@ export default function () {
             <div key={key} className={style.content_list}>
               {
                 imgList.map((item:any,key:number) => (
-                  <Card key={item} src={item} margin={key+1==imgList.length?{right:'0'}:{right: '20px'}} />
+                    <Card
+                      key={item}
+                      type='playcard'
+                      src={item}
+                      margin={key+1===imgList.length?{right:'0'}:{right: '20px'}}
+                    />
                 ))
               }
             </div>
