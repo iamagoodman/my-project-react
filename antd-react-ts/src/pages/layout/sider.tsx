@@ -69,9 +69,7 @@ function LinkB (){
 }
 export default function () {
   const [defaultVal,setDefaultVal] = useState('sub1');
-  console.log(history);
   function setVal(val:any) {
-    console.log(val);
     setDefaultVal(val.key);
     history.push(val.path);
     history.go(val.num);

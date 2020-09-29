@@ -13,3 +13,6 @@ export type DO_CHANGE_NUMBER = typeof DO_CHANGE_NUMBER;
 
 export const DO_CHANGE_NAME = 'DO_CHANGE_NAME';
 export type DO_CHANGE_NAME = typeof DO_CHANGE_NAME;
+
+export const DO_CHANGE_HOME_TAB = 'DO_CHANGE_HOME_TAB';
+export type DO_CHANGE_HOME_TAB = typeof DO_CHANGE_HOME_TAB;

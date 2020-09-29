@@ -1,6 +1,10 @@
 import * as actions from '../stores/actions';  // 不太明白为什么 所有的动作又导入接口里
 import { ActionType } from "typesafe-actions";
 
+export interface Headerbarprops {
+  type: string;
+}
+
 export interface Iconprops {
   name: string;
   size?: number;

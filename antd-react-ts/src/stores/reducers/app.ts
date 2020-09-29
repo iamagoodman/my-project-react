@@ -12,13 +12,15 @@ export interface AppState {
   age: number;
   type: string;
   data: any;
+  headerbar: string;
 }
 const initialState: AppState = {
   number: 0,
   name: 'jack',
   age: 18,
   type: 'good',
-  data: 'hello word'
+  data: 'hello word',
+  headerbar: 'home'
 }
 
 export const appReducer = (state: AppState = initialState,action: Action) => {

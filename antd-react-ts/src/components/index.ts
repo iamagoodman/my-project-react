@@ -2,3 +2,4 @@
 export * from './iconfont';
 export * from './card';
 export * from './playNumCard';
+export * from './headerBars'
