@@ -1,5 +1,9 @@
 export const homeTabs = [
   {
+    key: 'recommend',
+    text: '个性推荐'
+  },
+  {
     key: 'song',
     text: '歌单'
   },

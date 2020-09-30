@@ -47,6 +47,15 @@ export interface ResponseDataType {
   data?: any;
 }
 
+export interface ResponseSuccess <T>{
+  data:T
+}
+
+export interface BannerResponse {
+  code: number;
+  banners: any[]
+}
+
 export interface FailMessage {
   success?: boolean;
   message?: string;

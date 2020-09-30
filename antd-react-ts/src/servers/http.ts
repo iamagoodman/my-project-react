@@ -6,7 +6,6 @@ import paths from '../utils/config';
 
 // const isEnv = process.env.NODE_ENV === 'development';
 const isEnv = true;
-
 const Loading = {
   loadingNum: 0,
   add(type: string = 'GET'): void {
@@ -26,7 +25,6 @@ const Loading = {
     // store.dispatch(doChangeLoadingStatus(loading, type));
   }
 };
-
 interface AxiosInstance {
   (config: AxiosRequestConfig): AxiosPromise;
   (url: string, config?: AxiosRequestConfig): AxiosPromise;
@@ -46,9 +44,9 @@ interface AxiosInstance {
 }
 
 const instance: AxiosInstance = axios.create({
+  withCredentials: true,
   baseURL: isEnv ? paths.baseEnvUrl : paths.baseUrl,
   timeout: 0,
-  withCredentials: true,
   transformRequest: [
     function(data, headers) {
       if (data && typeof data === 'string') {
@@ -64,7 +62,6 @@ const instance: AxiosInstance = axios.create({
     }
   ]
 });
-
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (
@@ -89,8 +86,8 @@ instance.interceptors.response.use(
     }
     if (
       !(
-        (response.config.params && (response.config.params as any).showLoading === false) ||
-        (response.config.data && (response.config.data as any).showLoading === false)
+        (response.config&&response.config.params && (response.config.params as any).showLoading === false) ||
+        (response.config&&response.config.data && (response.config.data as any).showLoading === false)
       )
     ) {
       Loading.remove();
