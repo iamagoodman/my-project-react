@@ -3,13 +3,17 @@ import { of } from 'rxjs';
 import { mergeMap, filter, map, catchError } from 'rxjs/operators'
 import { isActionOf } from "typesafe-actions";
 import { message } from "antd";
-import { doFetchBanner } from "../actions";
+import { doFetchBanner, doFetchRecommendSong } from "../actions";
 import {
   ResponseSuccess,
   BannerResponse,
+  RecommendSongResponse,
   FailMessage
 } from "../../types";
-import {fetchBanner} from "../../servers";
+import {
+  fetchBanner,
+  fetchRecommendSong
+} from "../../servers";
 import {AxiosResponse} from "axios";
 
 const fetchBanners: Epic = (actions$,state$) =>
@@ -28,4 +32,20 @@ const fetchBanners: Epic = (actions$,state$) =>
     })
   )
 
-export default [fetchBanners];
+const fetRecommendSong: Epic= (actions$,state$) =>
+  actions$.pipe(
+    filter(isActionOf(doFetchRecommendSong.request)),
+    mergeMap(() => {
+      return fetchRecommendSong().pipe(
+        map(({data:{code,result}}: AxiosResponse<RecommendSongResponse>) => {
+          return doFetchRecommendSong.success({code,result})
+        }),
+        catchError((fail: FailMessage) => {
+          message.warning(fail.message || 'request fail');
+          return of(doFetchRecommendSong.failure(fail));
+        })
+      )
+    })
+  )
+
+export default [fetchBanners,fetRecommendSong];

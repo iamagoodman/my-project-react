@@ -4,9 +4,13 @@ import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 import style from './index.module.less';
 import {Card, IconFont} from '../../components';
-import { doFetchBanner } from "../../stores/actions";
+import {
+  doFetchBanner,
+  doFetchRecommendSong
+} from "../../stores/actions";
 import { imgList } from '../../constans/coreConstans';
 import {RootState} from "@/stores/reducers";
+
 let imgData:any[] = [];
 let arrkey = -1;
 for (let i = 1;i<=imgList.length;i++) {
@@ -19,13 +23,23 @@ for (let i = 1;i<=imgList.length;i++) {
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state.home,
-    ({ banners }) => ({ banners })
+    ({ banners, recommendSongs }) => ({ banners, recommendSongs })
   );
-  const { banners } = useSelector(mapState);
+  const { banners, recommendSongs } = useSelector(mapState);
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(doFetchBanner.request());
+    dispatch(doFetchRecommendSong.request());
   },[]);
+  let imgData:any[] = [];
+  let arrkey = -1;
+  for (let i = 1;i<=recommendSongs.length;i++) {
+    if (i%5 == 1){
+      arrkey++;
+      imgData[arrkey] = [];
+    }
+    imgData[arrkey].push(recommendSongs[i-1]);
+  }
   return (
     <div>
       <Carousel autoplay>
@@ -52,21 +66,38 @@ export default function () {
           <IconFont name='iconarrow-right-bold' />
         </div>
         {
-          imgData.map((imgList,key) => (
-            <div key={key} className={style.content_list}>
+          imgData.map((songs) =>
+            <div key={songs[0].id} className={style.content_list}>
               {
-                imgList.map((item:any,key:number) => (
+                songs.map((song:any,key:number) => (
                   <Card
-                    key={item}
+                    key={song.id}
                     type='playcard'
-                    src={item}
-                    margin={key+1===imgList.length?{right:'0'}:{right: '20px'}}
+                    src={song.picUrl}
+                    data={{playnum:song.playCount,desc:song.name}}
+                    margin={key+1===song.length?{right:'0'}:{right: '20px'}}
                   />
                 ))
               }
             </div>
-          ))
+          )
         }
+        {/*{*/}
+        {/*  imgData.map((imgList,key) => (*/}
+        {/*    <div key={key} className={style.content_list}>*/}
+        {/*      {*/}
+        {/*        imgList.map((item:any,key:number) => (*/}
+        {/*          <Card*/}
+        {/*            key={item}*/}
+        {/*            type='playcard'*/}
+        {/*            src={item}*/}
+        {/*            margin={key+1===imgList.length?{right:'0'}:{right: '20px'}}*/}
+        {/*          />*/}
+        {/*        ))*/}
+        {/*      }*/}
+        {/*    </div>*/}
+        {/*  ))*/}
+        {/*}*/}
       </div>
     </div>
   )
