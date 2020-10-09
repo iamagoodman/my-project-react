@@ -11,3 +11,7 @@ export function fetchBanner() {  // 用js的axios代替ts的axios 发起请求�
 export function fetchRecommendSong() {
   return from(fetchjs.get(home.recommendSong))
 }
+
+export function fetchNewSong() {
+  return from(fetchjs.get(home.recommendNewSong))
+}

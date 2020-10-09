@@ -51,6 +51,12 @@ export interface ResponseSuccess <T>{
   data:T
 }
 
+export interface NewSongResponse {
+  code: number;
+  category?: number;
+  result: any[];
+}
+
 export interface RecommendSongResponse {
   code: number;
   hasTaste?: boolean;

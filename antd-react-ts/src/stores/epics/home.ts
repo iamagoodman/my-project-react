@@ -3,16 +3,22 @@ import { of } from 'rxjs';
 import { mergeMap, filter, map, catchError } from 'rxjs/operators'
 import { isActionOf } from "typesafe-actions";
 import { message } from "antd";
-import { doFetchBanner, doFetchRecommendSong } from "../actions";
+import {
+  doFetchBanner,
+  doFetchRecommendSong,
+  doFetchNewSong
+} from "../actions";
 import {
   ResponseSuccess,
   BannerResponse,
   RecommendSongResponse,
+  NewSongResponse,
   FailMessage
 } from "../../types";
 import {
   fetchBanner,
-  fetchRecommendSong
+  fetchRecommendSong,
+  fetchNewSong
 } from "../../servers";
 import {AxiosResponse} from "axios";
 
@@ -32,7 +38,7 @@ const fetchBanners: Epic = (actions$,state$) =>
     })
   )
 
-const fetRecommendSong: Epic= (actions$,state$) =>
+const fetchRecommendSongs: Epic = (actions$,state$) =>
   actions$.pipe(
     filter(isActionOf(doFetchRecommendSong.request)),
     mergeMap(() => {
@@ -48,4 +54,20 @@ const fetRecommendSong: Epic= (actions$,state$) =>
     })
   )
 
-export default [fetchBanners,fetRecommendSong];
+const fetchNewSongs: Epic = (actions$,state$) =>
+  actions$.pipe(
+    filter(isActionOf(doFetchNewSong.request)),
+    mergeMap(() => {
+      return fetchNewSong().pipe(
+        map(({data:{code,result,category}}: AxiosResponse<NewSongResponse>) => {
+          return doFetchNewSong.success({result,code,category});
+        }),
+        catchError((fail: FailMessage) => {
+          message.warning(fail.message || 'request fail');
+          return of(doFetchNewSong.failure(fail));
+        })
+      )
+    })
+  )
+
+export default [fetchBanners, fetchRecommendSongs, fetchNewSongs];

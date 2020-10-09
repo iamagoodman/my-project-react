@@ -26,3 +26,15 @@ export function numtounit(number:any = 0) {
   result = parseInt(result);
   return result+unit;
 }
+export function splitarryaswewant(originarray:any[],splitnum:number) {
+  let targetarray:any[] = [];
+  let arrkey = -1;
+  for (let i = 1;i<=originarray.length;i++) {
+    if (i%splitnum == 1){
+      arrkey++;
+      targetarray[arrkey] = [];
+    }
+    targetarray[arrkey].push(originarray[i-1]);
+  }
+  return targetarray;
+}

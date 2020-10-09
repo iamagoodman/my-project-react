@@ -1,45 +1,74 @@
 import React, {useEffect} from 'react';
-import {Carousel} from 'antd';
+import { Carousel, Row, Col } from 'antd';
 import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 import style from './index.module.less';
 import {Card, IconFont} from '../../components';
 import {
   doFetchBanner,
-  doFetchRecommendSong
+  doFetchRecommendSong,
+  doFetchNewSong
 } from "../../stores/actions";
-import { imgList } from '../../constans/coreConstans';
+// import { imgList } from '../../constans/coreConstans';
 import {RootState} from "@/stores/reducers";
-
-let imgData:any[] = [];
-let arrkey = -1;
-for (let i = 1;i<=imgList.length;i++) {
-  if (i%5 == 1){
-    arrkey++;
-    imgData[arrkey] = [];
-  }
-  imgData[arrkey].push(imgList[i-1]);
-}
+import { splitarryaswewant } from '../../utils/util';
+// let imgData:any[] = [];
+// let arrkey = -1;
+// for (let i = 1;i<=imgList.length;i++) {
+//   if (i%5 == 1){
+//     arrkey++;
+//     imgData[arrkey] = [];
+//   }
+//   imgData[arrkey].push(imgList[i-1]);
+// }
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state.home,
-    ({ banners, recommendSongs }) => ({ banners, recommendSongs })
+    ({ banners, recommendSongs, newSongs }) => ({ banners, recommendSongs, newSongs })
   );
-  const { banners, recommendSongs } = useSelector(mapState);
+  const { banners, recommendSongs, newSongs } = useSelector(mapState);
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(doFetchBanner.request());
     dispatch(doFetchRecommendSong.request());
+    dispatch(doFetchNewSong.request());
   },[]);
-  let imgData:any[] = [];
-  let arrkey = -1;
-  for (let i = 1;i<=recommendSongs.length;i++) {
-    if (i%5 == 1){
-      arrkey++;
-      imgData[arrkey] = [];
-    }
-    imgData[arrkey].push(recommendSongs[i-1]);
-  }
+  // let imgData:any[] = [];
+  // let arrkey = -1;
+  // for (let i = 1;i<=recommendSongs.length;i++) {
+  //   if (i%5 == 1){
+  //     arrkey++;
+  //     imgData[arrkey] = [];
+  //   }
+  //   imgData[arrkey].push(recommendSongs[i-1]);
+  // }
+  let imgData:any[] = splitarryaswewant(recommendSongs,5);
+  let songData:any[] = splitarryaswewant(newSongs,2);
+  const testdata = [
+    [{
+      id:'432423',
+      text:'fdasjkfdsjal',
+      son: {}
+    },
+      {
+        id: '765778',
+        text: 'fdsajiojgfdd',
+        son: {}
+      }],
+    [
+      {
+        id:'43242343',
+        text:'fdasjkfdsjal',
+        son: {}
+      },
+      {
+        id: '76577887',
+        text: 'fdsajiojgfdd',
+        son: {}
+      }
+    ]
+  ]
+  console.log(songData);
   return (
     <div>
       <Carousel autoplay>
@@ -92,6 +121,49 @@ export default function () {
         {/*            type='playcard'*/}
         {/*            src={item}*/}
         {/*            margin={key+1===imgList.length?{right:'0'}:{right: '20px'}}*/}
+        {/*          />*/}
+        {/*        ))*/}
+        {/*      }*/}
+        {/*    </div>*/}
+        {/*  ))*/}
+        {/*}*/}
+      </div>
+      <div className={style.content_container}>
+        <div className={style.content_container_title}>
+          <span>最新音乐</span>
+          <IconFont name='iconarrow-right-bold' />
+        </div>
+        {/*{*/}
+        {/*  testdata.map((item) => (*/}
+        {/*    <div key={item[0].id}>*/}
+        {/*      {*/}
+        {/*        item.map((son) => (*/}
+        {/*          <span key={son.id}>{son.text}</span>*/}
+        {/*        ))*/}
+        {/*      }*/}
+        {/*    </div>*/}
+        {/*  ))*/}
+        {/*}*/}
+        {/*{*/}
+        {/*  songData.map((songList) => (*/}
+        {/*    <div key={songList[0].id}>{songList[0].id}</div>*/}
+        {/*  ))*/}
+        {/*}*/}
+        <Row>
+          <Col span={12}>fdsafsafsda</Col>
+          <Col span={12}>fdsafsafsda</Col>
+        </Row>
+        {/*{*/}
+        {/*  songData.map((songList) => (*/}
+        {/*    <div key={songList[0].id} className={style.content_list}>*/}
+        {/*      {*/}
+        {/*        songList.map((song:any,key:number) => (*/}
+        {/*          <Card*/}
+        {/*            key={song.song.album.id}*/}
+        {/*            type='playcard'*/}
+        {/*            src={song.song.album.picUrl}*/}
+        {/*            data={{playnum:song.id,desc:song.name}}*/}
+        {/*            margin={key+1===song.length?{right:'0'}:{right: '20px'}}*/}
         {/*          />*/}
         {/*        ))*/}
         {/*      }*/}

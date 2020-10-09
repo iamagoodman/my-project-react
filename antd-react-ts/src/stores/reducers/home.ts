@@ -4,13 +4,15 @@ import { Action } from "../../types";
 import {
   doChangeHomeTab,
   doFetchBanner,
-  doFetchRecommendSong
+  doFetchRecommendSong,
+  doFetchNewSong
 } from "../actions";
 
 export interface homeState {
   tab_key: string;
   banners: any[];
   recommendSongs: any[];
+  newSongs: any[];
 }
 const initalState: homeState = {
   tab_key: 'recommend',
@@ -26,7 +28,8 @@ const initalState: homeState = {
     copywriter:"热门推荐",
     picUrl:"https://p2.music.126.net/xphtETT9CVE-IjRzGx20YA==/7969260279094350.jpg",
     playCount:274237
-  }]
+  }],
+  newSongs: [{}]
 }
 
 export const homeReducer = function (state:homeState = initalState,action:Action) {
@@ -52,6 +55,14 @@ export const homeReducer = function (state:homeState = initalState,action:Action
         }
       )
     case (getType(doFetchRecommendSong.failure)):
+      return state;
+    case (getType(doFetchNewSong.success)):
+      return update(
+        state,{
+          newSongs: {$set: action.payload.result}
+        }
+      )
+    case (getType(doFetchNewSong.failure)):
       return state;
     default:
       return state;

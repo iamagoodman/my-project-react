@@ -3,8 +3,10 @@ import {action, createAction, createAsyncAction} from "typesafe-actions";
 import {
   BannerResponse,
   RecommendSongResponse,
+  NewSongResponse,
   FailMessage
 } from "../../types";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 export const doChangeHomeTab = createAction(
   ActionType.DO_CHANGE_HOME_TAB,
@@ -21,4 +23,10 @@ export const doFetchRecommendSong = createAsyncAction(
   ActionType.FETCH_RECOMMEND_SONG_REQUEST,
   ActionType.FETCH_RECOMMEND_SONG_SUCCESS,
   ActionType.FETCH_RECOMMEND_SONG_FAILURE
-)<undefined,RecommendSongResponse,FailMessage>()
+)<undefined,RecommendSongResponse,FailMessage>();
+
+export const doFetchNewSong = createAsyncAction(
+  ActionType.FETCH_NEW_SONG_REQUEST,
+  ActionType.FETCH_NEW_SONG_SUCCESS,
+  ActionType.FETCH_NEW_SONG_FAILURE
+)<undefined,NewSongResponse,FailMessage>();
