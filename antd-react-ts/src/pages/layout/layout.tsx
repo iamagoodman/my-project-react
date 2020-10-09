@@ -1,5 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Drawer } from "antd";
+import Login from '../login/login';
 import { Layout } from "antd";
 import LayoutHeader from './header';
 import LayoutSilder from './sider';
@@ -27,6 +29,7 @@ function myLayout(props: Props) {
         </Layout>
       </Layout>
       <LayoutFooter />
+      <Login />
     </Layout>
   );
 }

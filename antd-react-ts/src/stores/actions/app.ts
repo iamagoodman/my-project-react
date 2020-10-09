@@ -3,7 +3,9 @@ import { action, createAction, createAsyncAction} from "typesafe-actions";
 import {
   RequestDataType,
   ResponseDataType,
-  FailMessage
+  FailMessage,
+  RequestLogin,
+  ResponseLogin
 } from "../../types";
 
 export const doChangeName = createAction(
@@ -21,3 +23,14 @@ export const doFetchData = createAsyncAction(
   ActionType.FETCH_DATA_SUCCESS,
   ActionType.FETCH_DATA_FAILURE
 )<undefined, ResponseDataType, FailMessage>();
+
+export const doLoginVisiable = createAction(
+  ActionType.DO_LOGIN_VISIABLE,
+  action => (visiable: boolean) => action(visiable)
+)
+
+export const doLogin = createAsyncAction(
+  ActionType.FETCH_LOGIN_REQUEST,
+  ActionType.FETCH_LOGIN_SUCCESS,
+  ActionType.FETCH_LOGIN_FAILURE
+)<RequestLogin, ResponseLogin, FailMessage>();

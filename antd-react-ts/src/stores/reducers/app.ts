@@ -2,7 +2,9 @@ import { getType } from "typesafe-actions";     // 判断动作类型
 import update from 'immutability-helper';       // 用于更新不可变值state
 import {
   doFetchData,
-  doChangeName
+  doChangeName,
+  doLoginVisiable,
+  doLogin
 } from "../actions";
 import { Action } from "../../types";
 
@@ -13,6 +15,10 @@ export interface AppState {
   type: string;
   data: any;
   headerbar: string;
+  loginVisiable: boolean;
+  phone: string;
+  password: string;
+  userInfo: any;
 }
 const initialState: AppState = {
   number: 0,
@@ -20,7 +26,11 @@ const initialState: AppState = {
   age: 18,
   type: 'good',
   data: 'hello word',
-  headerbar: 'home'
+  headerbar: 'home',
+  loginVisiable: true,
+  phone: '13929244742',
+  password: 'qwer1234',
+  userInfo: {},
 }
 
 export const appReducer = (state: AppState = initialState,action: Action) => {
@@ -36,6 +46,18 @@ export const appReducer = (state: AppState = initialState,action: Action) => {
     case getType(doFetchData.failure):
       return update(state,{
         data: {$set: 'hello word'}
+      });
+    case getType(doLoginVisiable):
+      return update(state, {
+        loginVisiable: { $set: action.payload }
+      });
+    case getType(doLogin.success):
+      return update(state,{
+        userInfo: { $set: action.payload }
+      });
+    case getType(doLogin.failure):
+      return update(state,{
+        userInfo: { $set: {} }
       });
     default:
       return state;

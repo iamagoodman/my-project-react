@@ -44,31 +44,6 @@ export default function () {
   // }
   let imgData:any[] = splitarryaswewant(recommendSongs,5);
   let songData:any[] = splitarryaswewant(newSongs,2);
-  const testdata = [
-    [{
-      id:'432423',
-      text:'fdasjkfdsjal',
-      son: {}
-    },
-      {
-        id: '765778',
-        text: 'fdsajiojgfdd',
-        son: {}
-      }],
-    [
-      {
-        id:'43242343',
-        text:'fdasjkfdsjal',
-        son: {}
-      },
-      {
-        id: '76577887',
-        text: 'fdsajiojgfdd',
-        son: {}
-      }
-    ]
-  ]
-  console.log(songData);
   return (
     <div>
       <Carousel autoplay>
@@ -133,22 +108,6 @@ export default function () {
           <span>最新音乐</span>
           <IconFont name='iconarrow-right-bold' />
         </div>
-        {/*{*/}
-        {/*  testdata.map((item) => (*/}
-        {/*    <div key={item[0].id}>*/}
-        {/*      {*/}
-        {/*        item.map((son) => (*/}
-        {/*          <span key={son.id}>{son.text}</span>*/}
-        {/*        ))*/}
-        {/*      }*/}
-        {/*    </div>*/}
-        {/*  ))*/}
-        {/*}*/}
-        {/*{*/}
-        {/*  songData.map((songList) => (*/}
-        {/*    <div key={songList[0].id}>{songList[0].id}</div>*/}
-        {/*  ))*/}
-        {/*}*/}
         <Row>
           <Col span={12}>fdsafsafsda</Col>
           <Col span={12}>fdsafsafsda</Col>

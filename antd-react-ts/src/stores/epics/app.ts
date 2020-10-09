@@ -3,17 +3,20 @@ import { mergeMap, filter, map, catchError } from "rxjs/operators";
 import { of } from 'rxjs';
 import { isActionOf } from "typesafe-actions";
 import { message } from "antd";
-import { doFetchData } from "../actions";
+import { doFetchData, doLogin } from "../actions";
 import {
   RequestDataType,
   ResponseDataType,
-  FailMessage
+  FailMessage,
+  RequestLogin,
+  ResponseLogin,
+  PayloadData
 } from "../../types";
 
 import { AxiosResponse } from "axios";
-import { fetchData } from '../../servers';
+import { fetchData, fetchLogin } from '../../servers';
 
-const getData: Epic = (action$, state) =>
+const getData: Epic = (action$, state$) =>
   action$.pipe(
     filter(isActionOf(doFetchData.request)),
     mergeMap(() => {
@@ -30,5 +33,23 @@ const getData: Epic = (action$, state) =>
     })
   )
 
+const login: Epic = (actions$, state$) =>
+  actions$.pipe(
+    filter(isActionOf(doLogin.request)),
+    mergeMap(({payload}: PayloadData<RequestLogin>) => {
+      return fetchLogin(payload).pipe(
+        map(({data:{code,profile}}: AxiosResponse<ResponseLogin>)=>{
+          console.log('login success');
+          return doLogin.success({code,profile});
+        }),
+        catchError((fail: FailMessage)=>{
+          console.log('login fail');
+          message.warning(fail.message || 'request fail');
+          return of(doLogin.failure(fail));
+        })
+      )
+    })
+  )
 
-export default [getData];
+
+export default [getData,login];

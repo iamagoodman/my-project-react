@@ -1,6 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { Layout,Menu } from 'antd';
+import { createSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
+// import { RootState } from "@/stores/reducers";
+import { doLoginVisiable } from "../../stores/actions";
 import { Link, withRouter } from 'react-router-dom';
 import { IconFont } from "../../components";
 import style from './index.module.less';
@@ -62,18 +66,18 @@ function IconContainer(props:Iconprops) {
     </span>
   )
 }
-function LinkB (){
-  return (
-    <Link to='/'>fdasfdsa</Link>
-  )
-}
 export default function () {
+  // const mapState = createSelector(
+  //   (state: RootState) => state,
+  //   ({app: {loginVisiable}}) => ({loginVisiable})
+  // );
+  // const { loginVisiable } = useSelector(mapState);
+  const dispatch = useDispatch();
   const [defaultVal,setDefaultVal] = useState('sub1');
   function setVal(val:any) {
     setDefaultVal(val.key);
     history.push(val.path);
-    history.go(val.num);
-    // window.location.href = val.path;
+    // history.go(val.num);
   }
   return (
     <Sider width={200} className={style.my_layout_sider}>
@@ -84,6 +88,11 @@ export default function () {
         defaultOpenKeys={['sub1']}
         style={{ height: '100%', borderRight: 0 }}
       >
+        <SubMenu
+          className={style.my_sider_menu_item}
+          onTitleClick={() => {dispatch(doLoginVisiable(true))}}
+          title={'登录'}
+        />
         {
           SiderList.map((sider) => (
             <SubMenu

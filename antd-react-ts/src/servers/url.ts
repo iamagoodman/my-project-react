@@ -1,6 +1,7 @@
 export default {
   app: {
-    getdata: '/get'
+    getdata: '/get',
+    login: '/login/cellphone',                // 登录
   },
   home: {
     getbanner: '/banner?type=0',             // 首页banner

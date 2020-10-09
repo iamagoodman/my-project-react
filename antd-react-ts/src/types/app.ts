@@ -78,3 +78,22 @@ export interface ChangeNumber {
   type: string;
   number: number;
 }
+
+export interface RequestLogin {
+  phone: string;
+  password: string;
+}
+
+export interface ResponseLogin {
+  loginType?: any;
+  code: any;
+  account?: any;
+  token?: any;
+  profile: any;
+  bindings?: any[];
+  cookie?: any;
+}
+
+export interface PayloadData<T> {
+  payload: T;
+}
