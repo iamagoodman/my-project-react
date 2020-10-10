@@ -1,7 +1,10 @@
 export default {
   app: {
     getdata: '/get',
-    login: '/login/cellphone',                // 登录
+    login: '/login/cellphone',                // 登录       ?phone=XXXX&password=XXXX
+    loginStatus: '/login/status',              // 获取登录状态
+    playlist: '/playlist/detail',              // 获取歌单详情 ?id=24381616
+    songurl: '/song/url',                      // 获取歌曲url ?id=405998841,33894312
   },
   home: {
     getbanner: '/banner?type=0',             // 首页banner

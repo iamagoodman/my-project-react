@@ -4,7 +4,9 @@ import {
   doFetchData,
   doChangeName,
   doLoginVisiable,
-  doLogin
+  doLogin,
+  doFetchPlayList,
+  doFetchSongUrl
 } from "../actions";
 import { Action } from "../../types";
 
@@ -19,6 +21,8 @@ export interface AppState {
   phone: string;
   password: string;
   userInfo: any;
+  playList: any[];
+  songUrl: any[];
 }
 const initialState: AppState = {
   number: 0,
@@ -31,6 +35,8 @@ const initialState: AppState = {
   phone: '13929244742',
   password: 'qwer1234',
   userInfo: {},
+  playList: [],
+  songUrl: []
 }
 
 export const appReducer = (state: AppState = initialState,action: Action) => {
@@ -59,6 +65,18 @@ export const appReducer = (state: AppState = initialState,action: Action) => {
       return update(state,{
         userInfo: { $set: {} }
       });
+    case getType(doFetchPlayList.success):
+      return update(state,{
+        playList: { $set: action.payload.playlist }
+      });
+    case getType(doFetchPlayList.failure):
+      return state;
+    case getType(doFetchSongUrl.success):
+      return update(state,{
+        songUrl: { $set: action.payload.data }
+      });
+    case getType(doFetchSongUrl.failure):
+      return state;
     default:
       return state;
   }

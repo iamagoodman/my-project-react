@@ -7,7 +7,8 @@ import {Card, IconFont} from '../../components';
 import {
   doFetchBanner,
   doFetchRecommendSong,
-  doFetchNewSong
+  doFetchNewSong,
+  doFetchPlayList
 } from "../../stores/actions";
 // import { imgList } from '../../constans/coreConstans';
 import {RootState} from "@/stores/reducers";
@@ -80,6 +81,7 @@ export default function () {
                     src={song.picUrl}
                     data={{playnum:song.playCount,desc:song.name}}
                     margin={key+1===song.length?{right:'0'}:{right: '20px'}}
+                    click={()=>{dispatch(doFetchPlayList.request({id: song.id}))}}
                   />
                 ))
               }

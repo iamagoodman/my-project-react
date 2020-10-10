@@ -5,7 +5,10 @@ import {
   ResponseDataType,
   FailMessage,
   RequestLogin,
-  ResponseLogin
+  ResponseLogin,
+  RequestPlayList,
+  ResponsePlayList,
+  ResponseSongUrl
 } from "../../types";
 
 export const doChangeName = createAction(
@@ -34,3 +37,15 @@ export const doLogin = createAsyncAction(
   ActionType.FETCH_LOGIN_SUCCESS,
   ActionType.FETCH_LOGIN_FAILURE
 )<RequestLogin, ResponseLogin, FailMessage>();
+
+export const doFetchPlayList = createAsyncAction(
+  ActionType.FETCH_PLAYLIST_REQUEST,
+  ActionType.FETCH_PLAYLIST_SUCCESS,
+  ActionType.FETCH_PLAYLIST_FAILURE
+)<RequestPlayList, ResponsePlayList, FailMessage>();
+
+export const doFetchSongUrl = createAsyncAction(
+  ActionType.FETCH_SONGURL_REQUEST,
+  ActionType.FETCH_SONGURL_SUCCESS,
+  ActionType.FETCH_SONGURL_FAILURE
+)<RequestPlayList, ResponseSongUrl, FailMessage>();

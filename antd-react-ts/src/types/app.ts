@@ -21,6 +21,7 @@ export interface Cardprops {
   margin?: any;
   type: string;
   data?: CardInformation;
+  click?: any;
 }
 
 export interface PlayNumProps {
@@ -97,4 +98,22 @@ export interface ResponseLogin {
 
 export interface PayloadData<T> {
   payload: T;
+}
+
+export interface RequestPlayList {
+  id: string;
+  s?: number
+}
+
+export interface ResponsePlayList {
+  code: string;
+  playlist: any;
+  privileges?: any[];
+  relatedVideos?: any;
+  urls?: any;
+}
+
+export interface ResponseSongUrl {
+  code?: string;
+  data: object[];
 }
