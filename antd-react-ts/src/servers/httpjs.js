@@ -60,7 +60,7 @@ instance.interceptors.response.use(
 const getFn = instance.get;
 
 instance.get = (url, data = {}, config = {}) => {
-  config.params = data;
+  config.params = data.data;
   return getFn(url, config);
 };
 

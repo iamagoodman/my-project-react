@@ -27,7 +27,7 @@ const initialState: AppState = {
   type: 'good',
   data: 'hello word',
   headerbar: 'home',
-  loginVisiable: true,
+  loginVisiable: false,
   phone: '13929244742',
   password: 'qwer1234',
   userInfo: {},

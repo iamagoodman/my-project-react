@@ -70,8 +70,9 @@ export interface BannerResponse {
 }
 
 export interface FailMessage {
-  success?: boolean;
-  message?: string;
+  error?: any;
+  message?: any;
+  reasonCode?: any;
 }
 
 export interface ChangeNumber {
@@ -85,13 +86,13 @@ export interface RequestLogin {
 }
 
 export interface ResponseLogin {
-  loginType?: any;
-  code: any;
   account?: any;
-  token?: any;
-  profile: any;
   bindings?: any[];
+  code: any;
   cookie?: any;
+  loginType?: any;
+  profile: any;
+  token?: any;
 }
 
 export interface PayloadData<T> {

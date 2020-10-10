@@ -33,17 +33,16 @@ const getData: Epic = (action$, state$) =>
     })
   )
 
-const login: Epic = (actions$, state$) =>
-  actions$.pipe(
+const login: Epic = (action$, state$) =>
+  action$.pipe(
     filter(isActionOf(doLogin.request)),
-    mergeMap(({payload}: PayloadData<RequestLogin>) => {
+    mergeMap(({ payload }: PayloadData<RequestLogin>) => {
       return fetchLogin(payload).pipe(
-        map(({data:{code,profile}}: AxiosResponse<ResponseLogin>)=>{
-          console.log('login success');
-          return doLogin.success({code,profile});
+        // dao di gai zm gao
+        map(({data:{account,bindings,code,cookie,loginType,profile,token}}: AxiosResponse<ResponseLogin>) => {
+          return doLogin.success({account,bindings,code,cookie,loginType,profile,token});
         }),
-        catchError((fail: FailMessage)=>{
-          console.log('login fail');
+        catchError((fail: any) => {
           message.warning(fail.message || 'request fail');
           return of(doLogin.failure(fail));
         })

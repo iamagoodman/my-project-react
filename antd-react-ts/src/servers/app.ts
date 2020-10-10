@@ -1,12 +1,13 @@
 import fetch from './http';
+import fetchjs from './httpjs';   // 用js的axios代替ts的axios 发起请求，避免返回报文不同的ts类型校验
 import url from './url';
 import { from } from "rxjs";
-import { RequestDataType } from "../types";
+import { RequestDataType, RequestLogin } from "../types";
 const app = url.app;
 export function fetchData() {
-  return from(fetch.get(app.getdata,{name:'frank'}))
+  return from(fetchjs.get(app.getdata))
 }
 
-export function fetchLogin(data: any) {
-  return from(fetch.get(app.login,{...data}))
+export function fetchLogin(data: RequestLogin) {
+  return from(fetchjs.get(app.login, {data}))
 }

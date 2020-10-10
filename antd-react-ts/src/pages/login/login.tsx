@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/stores/reducers";
@@ -12,21 +12,23 @@ const { Group } = Input;
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state,
-    ({app: { loginVisiable, phone, password }}) => ({ loginVisiable, phone, password })
+    ({app: { loginVisiable, phone, password, userInfo }}) => ({ loginVisiable, phone, password, userInfo })
   )
-  const { loginVisiable, phone, password } = useSelector(mapState);
+  const { loginVisiable, phone, password, userInfo } = useSelector(mapState);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const checkValid = async () => {
     try{
       const values = await form.validateFields();
-      console.log(values);
-      dispatch(doLogin.request({phone:'13929244742',password:'qwer1234'}));
-      // dispatch(doLogin.request(values));
+      dispatch(doLogin.request({phone:values.phone, password:values.password}));
+      dispatch(doLoginVisiable(false));
     }catch (e) {
       console.log(e);
     }
   }
+  useEffect(() => {
+    console.log(userInfo);
+  },[userInfo])
   return (
     <Modal
       className={'login_module'}
