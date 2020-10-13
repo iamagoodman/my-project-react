@@ -9,14 +9,14 @@ export const SongList = function (props:songlistprops) {
         <tbody>
         <tr>
           <td style={{width:'75px'}}></td>
-          <td style={{width:'290px'}}>音乐标题</td>
+          <td style={{width:'280px'}}>音乐标题</td>
           <td style={{width:'150px'}}>歌手</td>
           <td style={{width:'180px'}}>专辑</td>
           <td style={{width:'47px'}}>时长</td>
         </tr>
         {
           props.data.map((item,index) => (
-            <tr key={item.id} onClick={() => {props.fun({data:{id:item.id}})}}>
+            <tr key={item.id} onClick={() => {props.fun(item)}}>
               <td>
                 <span style={{paddingLeft:'5px',paddingRight:'5px'}}>{index+1>9?index+1:'0'+(index+1)}</span>
                 <span><IconFont name='iconlike1' /></span>

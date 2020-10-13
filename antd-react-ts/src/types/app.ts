@@ -9,6 +9,7 @@ export interface Iconprops {
   name: string;
   size?: number;
   color?: string;
+  click?: any;
 }
 
 export interface songlistprops {
