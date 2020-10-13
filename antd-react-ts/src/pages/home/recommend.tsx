@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 import style from './index.module.less';
 import {Card, IconFont} from '../../components';
+import { history } from '../../utils/util';
 import {
   doFetchBanner,
   doFetchRecommendSong,
@@ -81,7 +82,7 @@ export default function () {
                     src={song.picUrl}
                     data={{playnum:song.playCount,desc:song.name}}
                     margin={key+1===song.length?{right:'0'}:{right: '20px'}}
-                    click={()=>{dispatch(doFetchPlayList.request({id: song.id}))}}
+                    click={()=>{dispatch(doFetchPlayList.request({id: song.id}));history.push('playlist')}}
                   />
                 ))
               }

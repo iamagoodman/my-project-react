@@ -11,6 +11,11 @@ const routes:RouteItem[] = [
     key: 'home',
     path: '/',
     component: lazy(() => import('../pages/home'))
+  },
+  {
+    key: 'playlist',
+    path: '/playlist',
+    component: lazy(() => import('../pages/playlist'))
   }
 ];
 

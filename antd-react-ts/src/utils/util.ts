@@ -6,7 +6,7 @@ export function isNotEmpty(str?: string | number): boolean {
 }
 export function numtounit(number:any = 0) {
   let result = number;
-  let unit;
+  let unit = '';
   if (number>1000) {
     result = number/1000;
     unit = 'k';
@@ -37,4 +37,12 @@ export function splitarryaswewant(originarray:any[],splitnum:number) {
     targetarray[arrkey].push(originarray[i-1]);
   }
   return targetarray;
+}
+export function fixedTime(time: number | string) {
+  let timer = new Date(time);
+  let year = timer.getFullYear();
+  let month: string = timer.getMonth()+1+'';
+  month = Number(month)>9 ? month : '0' + month;
+  let day = timer.getDate();
+  return year + '-' + month + '-' + day;
 }

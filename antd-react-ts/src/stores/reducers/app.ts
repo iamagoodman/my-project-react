@@ -21,7 +21,7 @@ export interface AppState {
   phone: string;
   password: string;
   userInfo: any;
-  playList: any[];
+  playList: any;
   songUrl: any[];
 }
 const initialState: AppState = {
@@ -35,7 +35,7 @@ const initialState: AppState = {
   phone: '13929244742',
   password: 'qwer1234',
   userInfo: {},
-  playList: [],
+  playList: {},
   songUrl: []
 }
 

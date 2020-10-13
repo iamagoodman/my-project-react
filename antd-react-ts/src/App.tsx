@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.less';
-import './styles/Global.less';
 import { createSelector } from "reselect";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "./stores/reducers";

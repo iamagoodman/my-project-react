@@ -11,6 +11,11 @@ export interface Iconprops {
   color?: string;
 }
 
+export interface songlistprops {
+  data: any[];
+  fun: any;
+}
+
 export interface CardInformation {
   playnum: number;
   desc: string;
