@@ -46,3 +46,19 @@ export function fixedTime(time: number | string) {
   let day = timer.getDate();
   return year + '-' + month + '-' + day;
 }
+export function getMinSec(time: number) {
+  if (isNaN(time)) {
+    return '00:00'
+  }
+  let min;let second;
+  if (time>60) {
+    min = Math.floor(time/60);
+    second = time%60;
+  } else {
+    min = '0';
+    second = time
+  }
+  min = min>9?min:'0'+min;
+  second = second>9?second:'0'+second;
+  return min + ':' + second;
+}

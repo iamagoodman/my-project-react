@@ -1,8 +1,16 @@
 import React from 'react';
+import { createSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 import { IconFont } from '../../components';
 import { songlistprops } from '../../types';
+import { RootState } from '../../stores/reducers';
 import style from './index.module.less';
 export const SongList = function (props:songlistprops) {
+  const mpState = createSelector(
+    (state: RootState) => state,
+    ({play:{currentdata}}) => ({currentdata})
+  );
+  const { currentdata } = useSelector(mpState);
   return (
     <div className={style.table}>
       <table>
@@ -16,9 +24,15 @@ export const SongList = function (props:songlistprops) {
         </tr>
         {
           props.data.map((item,index) => (
-            <tr key={item.id} onClick={() => {props.fun(item)}}>
+            <tr className={currentdata.duration != 0 && index == currentdata.playIndex?style.trbg:''} key={item.id} onClick={() => {props.fun(item,index)}}>
               <td>
-                <span style={{paddingLeft:'5px',paddingRight:'5px'}}>{index+1>9?index+1:'0'+(index+1)}</span>
+                {
+                  currentdata.duration!=0&&index == currentdata.playIndex?
+                    <span style={{display:'inlineBlock',width:'27px',textAlign:'center'}}>
+                      <IconFont name='iconyinliang1' color='#e31e10' />
+                    </span>:
+                    <span style={{display:'inlineBlock',width:'27px',textAlign:'center'}}>{index+1>9?index+1:'0'+(index+1)}</span>
+                }
                 <span><IconFont name='iconlike1' /></span>
                 <span><IconFont name='iconDownload' /></span>
               </td>

@@ -123,3 +123,9 @@ export interface ResponseSongUrl {
   code?: string;
   data: object[];
 }
+
+export interface CurrentData {
+  duration: number;
+  currentTime: number;
+  playIndex: number;
+}

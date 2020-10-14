@@ -77,3 +77,6 @@ export type FETCH_SONG_URL = typeof FETCH_SONG_URL;
 
 export const FETCH_CURRENT_DATA = 'FETCH_CURRENT_DATA';
 export type FETCH_CURRENT_DATA = typeof FETCH_CURRENT_DATA;
+
+export const FETCH_PROGRESS = 'FETCH_PROGRESS';
+export type FETCH_PROGRESS = typeof FETCH_PROGRESS;

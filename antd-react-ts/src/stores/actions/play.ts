@@ -1,6 +1,6 @@
 import * as ActionType from '../../constans/actionType';
 import {createAsyncAction, createAction, action} from 'typesafe-actions';
-import { PayloadData } from '../../types';
+import { PayloadData, CurrentData } from '../../types';
 
 export const doPlayStatus = createAction(
   ActionType.FETCH_PLAY_STATUS,
@@ -19,5 +19,10 @@ export const doSongUrl = createAction(
 
 export const doCurrentData = createAction(
   ActionType.FETCH_CURRENT_DATA,
-  action => (currentdata: PayloadData<any>) => action(currentdata)
+  action => (currentdata: CurrentData) => action(currentdata)
+)
+
+export const doProgress = createAction(
+  ActionType.FETCH_PROGRESS,
+  action => (progress: number) => action(progress)
 )

@@ -1,14 +1,18 @@
 import { getType } from 'typesafe-actions';
 import { Action } from '../../types';
 import update from 'immutability-helper';
-import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData } from "../../stores/actions";
+import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData, doProgress } from "../../stores/actions";
 
 export interface playState {
   playStatus: boolean;
   current: any;
-  playList: any[];
   currenturl: string;
-  currentdata: any;
+  progressNum: number;
+  currentdata: {
+    duration: number;
+    currentTime: number;
+    playIndex: number;
+  };
 }
 
 const initialState: playState = {
@@ -16,13 +20,21 @@ const initialState: playState = {
   current: {
     al:{}
   },
-  playList: [],
   currenturl: 'http://m8.music.126.net/20201013161614/f5fa0758705687ff5ac768d37245c317/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3355921739/46f4/f5d9/4418/50d29712324d57b466ed78cc8f7b1892.mp3',
-  currentdata: {}
+  progressNum: 0,
+  currentdata: {
+    duration: 0,
+    currentTime: 0,
+    playIndex: 0
+  }
 }
 
 export const playReducer = function (state: playState = initialState, action: Action) {
   switch (action.type) {
+    case(getType(doPlayStatus)):
+      return update(state,{
+        playStatus: { $set: action.payload }
+      });
     case(getType(doCurrentSong)):
       return update(state,{
         current: { $set: action.payload }
@@ -33,7 +45,15 @@ export const playReducer = function (state: playState = initialState, action: Ac
       });
     case(getType(doCurrentData)):
       return update(state,{
-        currentdata: { $set: action.payload }
+        currentdata: {
+          duration: { $set: action.payload.duration },
+          currentTime: { $set: action.payload.currentTime },
+          playIndex: { $set: action.payload.playIndex }
+        }
+      });
+    case(getType(doProgress)):
+      return update(state,{
+        progressNum: { $set: action.payload }
       });
     default:
       return state;

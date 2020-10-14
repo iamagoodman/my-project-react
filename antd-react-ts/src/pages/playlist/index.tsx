@@ -9,22 +9,23 @@ import style from './index.module.less';
 import { fixedTime } from '../../utils/util';
 import { numtounit } from '../../utils/util';
 import { fetchsongurl } from "../../servers/specialservers";
-import { doCurrentSong, doSongUrl} from "../../stores/actions";
+import {doCurrentSong, doPlayStatus, doSongUrl, doCurrentData} from "../../stores/actions";
 
 const { TabPane } = Tabs;
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state,
-    ({app: {playList, songUrl}}) => ({playList, songUrl})
+    ({app: {playList, songUrl}, play: {currentdata}}) => ({playList, songUrl, currentdata})
   );
-  const { playList, songUrl } = useSelector(mapState);
+  const { playList, songUrl, currentdata } = useSelector(mapState);
   const dispatch = useDispatch();
   let play = playList;
-  let reqsongurl = async (req:any) => {
+  let reqsongurl = async (req:any,index:number) => {
     dispatch(doCurrentSong(req));
     let data = await fetchsongurl({data:{id:req.id}});
-    console.log(data.data.data[0].url);
     dispatch(doSongUrl(data.data.data[0].url));
+    dispatch(doPlayStatus(true));
+    dispatch(doCurrentData({currentTime:currentdata.currentTime,duration:currentdata.duration,playIndex:index}));
   }
   return (
     <div>
