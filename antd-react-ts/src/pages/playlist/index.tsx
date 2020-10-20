@@ -8,8 +8,8 @@ import style from './index.module.less';
 // import { playdata } from '../../constans/coreConstans';
 import { fixedTime } from '../../utils/util';
 import { numtounit } from '../../utils/util';
-import { fetchsongurl } from "../../servers/specialservers";
-import {doCurrentSong, doPlayStatus, doSongUrl, doCurrentData} from "../../stores/actions";
+import {fetchlyric, fetchsongurl} from "../../servers/specialservers";
+import {doCurrentSong, doPlayStatus, doSongUrl, doCurrentData, doFetchLyric} from "../../stores/actions";
 
 const { TabPane } = Tabs;
 export default function () {
@@ -23,6 +23,9 @@ export default function () {
   let reqsongurl = async (req:any,index:number) => {
     dispatch(doCurrentSong(req));
     let data = await fetchsongurl({data:{id:req.id}});
+    // let lyric = await fetchlyric({data:{id:req.id}});
+    // console.log(lyric);
+    dispatch(doFetchLyric.request({id:req.id}));
     dispatch(doSongUrl(data.data.data[0].url));
     dispatch(doPlayStatus(true));
     dispatch(doCurrentData({currentTime:currentdata.currentTime,duration:currentdata.duration,playIndex:index}));

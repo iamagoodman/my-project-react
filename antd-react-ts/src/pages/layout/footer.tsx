@@ -6,30 +6,19 @@ import { IconFont } from '../../components';
 import style from "./index.module.less";
 import './index.less';
 import { RootState } from '../../stores/reducers';
-import {doCurrentData, doCurrentSong, doPlayStatus, doProgress, doSongUrl} from '../../stores/actions';
+import {doCurrentData, doCurrentSong, doFetchLyric, doPlayStatus, doProgress, doSongUrl} from '../../stores/actions';
 import { getMinSec } from '../../utils/util';
-import {fetchsongurl} from "../../servers/specialservers";
+import {fetchlyric, fetchsongurl} from "../../servers/specialservers";
 const { Footer } = Layout;
 
 export default function () {
-  const [shouldInter,setShouldInter] = useState(true);
+  // const [shouldInter,setShouldInter] = useState(true);
   const mpState = createSelector(
     (state: RootState) => state,
     ({ play: { current , playStatus, currenturl, currentdata, progressNum }, app: { playList } }) => ({ current, playStatus, currenturl, currentdata, progressNum, playList })
   );
   const { current, playStatus, currenturl, currentdata, progressNum, playList } = useSelector(mpState);
   const dispatch = useDispatch();
-  function intervalgetnum() {
-    let timer = setInterval(() => {
-      if (!shouldInter) {
-        clearInterval(timer)
-      }
-      setCurrentTime();
-    },1000)
-  }
-  useEffect(() => {
-    // intervalgetnum();
-  },[])
   const audioPlay: React.RefObject<any> = useRef(null);
   function showref() {
     const au = audioPlay.current;
@@ -37,7 +26,6 @@ export default function () {
       au.play();
       dispatch(doPlayStatus(true));
     } else {
-      setShouldInter(false); // 没成功，后续研究为什么
       au.pause();
       dispatch(doPlayStatus(false));
     }
@@ -45,6 +33,9 @@ export default function () {
   let reqsongurl = async (req:any,index:number) => {
     dispatch(doCurrentSong(req));
     let data = await fetchsongurl({data:{id:req.id}});
+    // let lyric = await fetchlyric({data:{id:req.id}});
+    // console.log(lyric);
+    dispatch(doFetchLyric.request({id:req.id}))
     dispatch(doSongUrl(data.data.data[0].url));
     dispatch(doPlayStatus(true));
     dispatch(doCurrentData({currentTime:currentdata.currentTime,duration:currentdata.duration,playIndex:index}));
@@ -76,6 +67,14 @@ export default function () {
   }
   function timeupdate() {
     setCurrentTime();
+  }
+  function ended() {
+    console.log('on ended');
+    dispatch(doProgress(0));
+    dispatch(doPlayStatus(false));
+    if (true) { // 自动连播放
+      nextSong();
+    }
   }
   return (
     <Footer className={`footer ${style.mp_layout_footer}`}>
@@ -113,17 +112,20 @@ export default function () {
           </div>
         </Col>
         <Col span={8}>
-          <audio
-            autoPlay={true}
-            ref={audioPlay}
-            key={currenturl}
-            controls={true}
-            src={currenturl}
-            onLoadedMetadata={loadedMetadata}
-            onTimeUpdate={timeupdate}
-          ></audio>
         </Col>
       </Row>
+      <div style={{opacity:0,height:'0'}}>
+        <audio
+          autoPlay={true}
+          ref={audioPlay}
+          key={currenturl}
+          controls={true}
+          src={currenturl}
+          onLoadedMetadata={loadedMetadata}
+          onTimeUpdate={timeupdate}
+          onEnded={ended}
+        ></audio>
+      </div>
     </Footer>
   );
 }

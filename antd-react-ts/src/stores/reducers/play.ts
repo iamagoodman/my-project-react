@@ -1,7 +1,7 @@
 import { getType } from 'typesafe-actions';
 import { Action } from '../../types';
 import update from 'immutability-helper';
-import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData, doProgress } from "../../stores/actions";
+import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData, doProgress, doFetchLyric } from "../../stores/actions";
 
 export interface playState {
   playStatus: boolean;
@@ -13,6 +13,12 @@ export interface playState {
     currentTime: number;
     playIndex: number;
   };
+  lyric: {
+    lrc: any;
+    sgc?: boolean;
+    sfy?: boolean;
+    qfy?: boolean;
+  }
 }
 
 const initialState: playState = {
@@ -26,6 +32,9 @@ const initialState: playState = {
     duration: 0,
     currentTime: 0,
     playIndex: 0
+  },
+  lyric: {
+    lrc: {}
   }
 }
 
@@ -55,6 +64,14 @@ export const playReducer = function (state: playState = initialState, action: Ac
       return update(state,{
         progressNum: { $set: action.payload }
       });
+    case(getType(doFetchLyric.success)):
+      return update(state,{
+        lyric: {
+          lrc: { $set: action.payload.lrc }
+        }
+      });
+    case(getType(doFetchLyric.failure)):
+      return state;
     default:
       return state;
   }

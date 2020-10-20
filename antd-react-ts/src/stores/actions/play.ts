@@ -1,6 +1,6 @@
 import * as ActionType from '../../constans/actionType';
 import {createAsyncAction, createAction, action} from 'typesafe-actions';
-import { PayloadData, CurrentData } from '../../types';
+import { PayloadData, CurrentData, RequestLyric, ResponseLyric, FailMessage } from '../../types';
 
 export const doPlayStatus = createAction(
   ActionType.FETCH_PLAY_STATUS,
@@ -26,3 +26,9 @@ export const doProgress = createAction(
   ActionType.FETCH_PROGRESS,
   action => (progress: number) => action(progress)
 )
+
+export const doFetchLyric = createAsyncAction(
+  ActionType.FETCH_LYRIC_REQUEST,
+  ActionType.FETCH_LYRIC_SUCCESS,
+  ActionType.FETCH_LYRIC_FAILURE
+)<RequestLyric,ResponseLyric,FailMessage>();

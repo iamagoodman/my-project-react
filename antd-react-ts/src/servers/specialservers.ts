@@ -8,3 +8,7 @@ export const fetchbanner = async () => {
 export const fetchsongurl = async (data:any) => {
   return await fetchjs.get(url.app.songurl,data)
 }
+
+export const fetchlyric = async (data:any) => {
+  return await fetchjs.get(url.play.lyric,data)
+}

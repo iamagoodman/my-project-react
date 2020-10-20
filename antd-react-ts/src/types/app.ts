@@ -111,6 +111,17 @@ export interface RequestPlayList {
   s?: number
 }
 
+export interface RequestLyric {
+  id: string;
+}
+
+export interface ResponseLyric {
+  lrc: any;
+  sgc?: boolean;
+  sfy?: boolean;
+  qfy?: boolean;
+}
+
 export interface ResponsePlayList {
   code: string;
   playlist: any;

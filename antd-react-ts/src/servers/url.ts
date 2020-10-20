@@ -6,6 +6,9 @@ export default {
     playlist: '/playlist/detail',              // 获取歌单详情 ?id=24381616
     songurl: '/song/url',                      // 获取歌曲url ?id=405998841,33894312
   },
+  play: {
+    lyric: '/lyric',                           // 获取歌词
+  },
   home: {
     getbanner: '/banner?type=0',             // 首页banner
     recommendSong: '/personalized?limit=20',  // 推荐歌单
