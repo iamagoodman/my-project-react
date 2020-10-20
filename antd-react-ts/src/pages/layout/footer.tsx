@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { createSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Row, Col, Progress } from 'antd';
+import { history } from '../../utils/util';
 import { IconFont } from '../../components';
 import style from "./index.module.less";
 import './index.less';
@@ -57,6 +58,7 @@ export default function () {
       // duration 总时长  currentTime 当前时间
       let duration = parseInt(audioPlay.current.duration);
       let currentTime = parseInt(audioPlay.current.currentTime);
+      console.log(audioPlay.current.currentTime);
       dispatch(doCurrentData(Object.assign(currentdata,{duration: duration, currentTime: currentTime})));
       let progress = (currentTime/duration)*100;
       dispatch(doProgress(progress));
@@ -76,13 +78,16 @@ export default function () {
       nextSong();
     }
   }
+  function tosong() {
+    history.push('song');
+  }
   return (
     <Footer className={`footer ${style.mp_layout_footer}`}>
       <Progress percent={progressNum} />
       <Row>
         <Col span={8}>
           <div style={{overflow:'hidden'}}>
-            <div style={{float:'left',width:'42px'}}>
+            <div style={{float:'left',width:'42px'}} onClick={tosong}>
               <img src={current.al.picUrl} style={{width:'42px',height:'42px',borderRadius:'3px'}} />
             </div>
             <div style={{marginLeft:'42px'}}>

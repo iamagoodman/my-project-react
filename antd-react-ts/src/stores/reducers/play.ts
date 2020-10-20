@@ -1,7 +1,7 @@
 import { getType } from 'typesafe-actions';
 import { Action } from '../../types';
 import update from 'immutability-helper';
-import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData, doProgress, doFetchLyric } from "../../stores/actions";
+import { doPlayStatus, doCurrentSong, doSongUrl, doCurrentData, doProgress, doLyricList, doFetchLyric } from "../../stores/actions";
 
 export interface playState {
   playStatus: boolean;
@@ -15,10 +15,12 @@ export interface playState {
   };
   lyric: {
     lrc: any;
+    tlyric?: any;
     sgc?: boolean;
     sfy?: boolean;
     qfy?: boolean;
-  }
+  },
+  lyricList: any[]
 }
 
 const initialState: playState = {
@@ -35,7 +37,8 @@ const initialState: playState = {
   },
   lyric: {
     lrc: {}
-  }
+  },
+  lyricList: []
 }
 
 export const playReducer = function (state: playState = initialState, action: Action) {
@@ -67,11 +70,16 @@ export const playReducer = function (state: playState = initialState, action: Ac
     case(getType(doFetchLyric.success)):
       return update(state,{
         lyric: {
-          lrc: { $set: action.payload.lrc }
+          lrc: { $set: action.payload.lrc },
+          tlyric: { $set: action.payload.tlyric }
         }
       });
     case(getType(doFetchLyric.failure)):
       return state;
+    case(getType(doLyricList)):
+      return update(state,{
+        lyricList: { $set: action.payload }
+      });
     default:
       return state;
   }

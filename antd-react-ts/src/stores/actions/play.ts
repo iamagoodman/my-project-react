@@ -27,6 +27,11 @@ export const doProgress = createAction(
   action => (progress: number) => action(progress)
 )
 
+export const doLyricList = createAction(
+  ActionType.FETCH_LYRICLIST,
+  action => (list: any[]) => action(list)
+)
+
 export const doFetchLyric = createAsyncAction(
   ActionType.FETCH_LYRIC_REQUEST,
   ActionType.FETCH_LYRIC_SUCCESS,

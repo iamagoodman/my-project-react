@@ -18,8 +18,8 @@ const Lyric: Epic = (action$,state$) =>
     filter(isActionOf(doFetchLyric.request)),
     mergeMap(({payload}: PayloadData<RequestLyric>) => {
       return fetchLyric(payload).pipe(
-        map(({data:{lrc}}: AxiosResponse<ResponseLyric>) => {
-          return doFetchLyric.success({lrc});
+        map(({data:{lrc,tlyric}}: AxiosResponse<ResponseLyric>) => {
+          return doFetchLyric.success({lrc,tlyric});
         }),
         catchError((fail: any) => {
           message.warning(fail.message || 'request fail');

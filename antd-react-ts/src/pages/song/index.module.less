@@ -1,2 +1,33 @@
-
+.container {
+  overflow: hidden;
+  .left {
+    float: left;
+    width: 360px;
+    text-align: right;
+    padding-right: 40px;
+    padding-top: 40px;
+  }
+  .right {
+    height: 470px;
+    margin-left: 360px;
+    .songName {
+      p {
+        text-align: left;
+      }
+      .bigtext {
+        font-size: 20px;
+      }
+      .smalltext {
+        span {
+          color: @active_color;
+          padding-right: 10px;
+        }
+      }
+    }
+    .lyric {
+      max-height: 380px;
+      overflow: scroll;
+    }
+  }
+}
 

@@ -117,6 +117,7 @@ export interface RequestLyric {
 
 export interface ResponseLyric {
   lrc: any;
+  tlyric?: any;
   sgc?: boolean;
   sfy?: boolean;
   qfy?: boolean;
