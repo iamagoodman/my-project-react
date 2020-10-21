@@ -62,3 +62,11 @@ export function getMinSec(time: number) {
   second = second>9?second:'0'+second;
   return min + ':' + second;
 }
+export function turntoNum(str: string = '[00:11.48]') {
+  str = str.split('[')[1];
+  str = str.split(']')[0];
+  let min = Number(str.split(':')[0]);
+  let second = parseInt(str.split(':')[1]);
+  let result = min * 60 + second;
+  return result;
+}

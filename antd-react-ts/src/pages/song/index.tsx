@@ -3,8 +3,8 @@ import { createSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/stores/reducers';
 import { doLyricList } from '../../stores/actions';
+import { turntoNum } from "../../utils/util";
 import style from './index.module.less';
-import {spawn} from "child_process";
 export default function () {
   const mapState = createSelector(
     (state: RootState) => state,
@@ -13,27 +13,38 @@ export default function () {
   const { lyric, current, lyricList, currentdata } = useSelector(mapState);
   const dispatch = useDispatch();
   useEffect( ()=> {
-    console.log(current);
-    console.log(lyric.lrc.lyric);
     let arr:string[] = [];
-    let str = lyric.lrc.lyric;
-    if (str) {
+    if (lyric.lrc&&lyric.lrc.lyric) {
+      let str = lyric.lrc.lyric;
       arr=str.split(/[\r\n]+/);
       arr.forEach((item:string,index:number)=>{
         if(!item){
           arr.splice(index,1);//删除空项
         }
       })
+      let result:any[] = [];
+      arr.forEach((str)=>{
+        let item = str.split(']');
+        result.push({time:item[0],des:item[1],num:turntoNum(item[0]),active:false})
+      })
+      dispatch(doLyricList(result));
     }
-    let result:any[] = [];
-    arr.forEach((str)=>{
-      let item = str.split(']');
-      result.push({time:item[0],des:item[1]})
-    })
-    dispatch(doLyricList(result));
   },[lyric])
   useEffect(() => {
-    console.log(currentdata.currentTime);
+    let copylist = JSON.parse(JSON.stringify(lyricList));
+    let current = copylist.filter((copy:any)=>(copy.num == currentdata.currentTime))[0];
+    if (current) {
+      copylist.forEach((copy:any)=>{
+        if (copy.num == currentdata.currentTime) {
+          copy.active = true;
+        } else {
+          copy.active = false;
+        }
+      });
+      if (copylist.length>0) {
+        dispatch(doLyricList(copylist));
+      }
+    }
   },[currentdata.currentTime])
   return (
     <div>
@@ -57,12 +68,11 @@ export default function () {
           </div>
           <div className={style.lyric}>
             {lyricList&&lyricList.map((lyr:any) => (
-              <p className={style.lyr} key={lyr.time}>{lyr.des}</p>
+              <p className={lyr.active?style.lyractive:style.lyr} key={lyr.time+lyr.des}>{lyr.des}</p>
             ))}
           </div>
         </div>
       </div>
-
     </div>
   )
 }

@@ -58,7 +58,6 @@ export default function () {
       // duration 总时长  currentTime 当前时间
       let duration = parseInt(audioPlay.current.duration);
       let currentTime = parseInt(audioPlay.current.currentTime);
-      console.log(audioPlay.current.currentTime);
       dispatch(doCurrentData(Object.assign(currentdata,{duration: duration, currentTime: currentTime})));
       let progress = (currentTime/duration)*100;
       dispatch(doProgress(progress));
