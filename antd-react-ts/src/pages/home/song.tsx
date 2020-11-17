@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector } from 'reselect';
 import { RootState } from '@/stores/reducers';
@@ -8,7 +8,7 @@ import {history, splitarryaswewant} from '../../utils/util';
 import style from './index.module.less';
 import { Card } from '../../components';
 export default function () {
-  const [curentpage,setCurrentPage] =
+  const [curentpage,setCurrentPage] = useState(0);
   const mapState = createSelector(
     (state:RootState) => state.home,
     ({ recommendSongs }) => ({ recommendSongs })

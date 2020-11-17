@@ -28,7 +28,7 @@ function RouterAll() {
   return (
     <div></div>
     // <Switch>
-    //   <Route path='/' component={CoreRoute} />
+    //   <Route path='/' components={CoreRoute} />
     // </Switch>
   )
 }
