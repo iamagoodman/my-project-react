@@ -2,6 +2,7 @@ import * as ActionType from '../../constans/actionType';
 import {action, createAction, createAsyncAction} from "typesafe-actions";
 import {
   BannerResponse,
+  RequestRecommend,
   RecommendSongResponse,
   NewSongResponse,
   FailMessage
@@ -23,7 +24,7 @@ export const doFetchRecommendSong = createAsyncAction(
   ActionType.FETCH_RECOMMEND_SONG_REQUEST,
   ActionType.FETCH_RECOMMEND_SONG_SUCCESS,
   ActionType.FETCH_RECOMMEND_SONG_FAILURE
-)<undefined,RecommendSongResponse,FailMessage>();
+)<RequestRecommend,RecommendSongResponse,FailMessage>();
 
 export const doFetchNewSong = createAsyncAction(
   ActionType.FETCH_NEW_SONG_REQUEST,

@@ -64,6 +64,10 @@ export interface NewSongResponse {
   result: any[];
 }
 
+export interface RequestRecommend {
+  limit?:number
+}
+
 export interface RecommendSongResponse {
   code: number;
   hasTaste?: boolean;

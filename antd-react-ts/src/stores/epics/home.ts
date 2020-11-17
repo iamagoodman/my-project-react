@@ -41,8 +41,8 @@ const fetchBanners: Epic = (actions$,state$) =>
 const fetchRecommendSongs: Epic = (actions$,state$) =>
   actions$.pipe(
     filter(isActionOf(doFetchRecommendSong.request)),
-    mergeMap(() => {
-      return fetchRecommendSong().pipe(
+    mergeMap(({payload}) => {
+      return fetchRecommendSong(payload).pipe(
         map(({data:{code,result}}: AxiosResponse<RecommendSongResponse>) => {
           return doFetchRecommendSong.success({code,result})
         }),

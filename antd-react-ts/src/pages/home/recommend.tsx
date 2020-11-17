@@ -32,7 +32,7 @@ export default function () {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(doFetchBanner.request());
-    dispatch(doFetchRecommendSong.request());
+    dispatch(doFetchRecommendSong.request({limit:20}));
     dispatch(doFetchNewSong.request());
   },[]);
   // let imgData:any[] = [];

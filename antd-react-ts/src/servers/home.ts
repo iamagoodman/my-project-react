@@ -8,8 +8,8 @@ export function fetchBanner() {  // 用js的axios代替ts的axios 发起请求�
   return from(fetchjs.get(home.getbanner))
 }
 
-export function fetchRecommendSong() {
-  return from(fetchjs.get(home.recommendSong))
+export function fetchRecommendSong(data:any) {
+  return from(fetchjs.get(home.recommendSong,{data}))
 }
 
 export function fetchNewSong() {
