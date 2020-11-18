@@ -7,10 +7,18 @@ import MyContext from './components/context';
 import Resfinput from './components/refsinput';
 import PortalComponent from './components/portalcomponent';
 import Userefcomponent from './components/userefcomponent';
+import MouseTracker from './components/mouseTracker';
 const data = [
   {name:'jack',sex:'F'},
   {name:'lili',sex:'M'}
 ]
+
+function FunTestRef() {
+  return (
+    <div>hello test ref on function component</div>
+  )
+}
+
 export default class testpage extends React.Component{
   private refcom: React.RefObject<HTMLDivElement>;
   private refinput: React.RefObject<HTMLInputElement>;
@@ -55,6 +63,9 @@ export default class testpage extends React.Component{
           <div>我要被挂在body节点下</div>
         </PortalComponent>
         <Userefcomponent />
+        <MouseTracker />
+        {/*<FunTestRef ref={this.refinput2} /> 函数组件上不能加ref，因为没有实例也不是DOM元素  */}
+        <FunTestRef />
       </div>
     )
   }
