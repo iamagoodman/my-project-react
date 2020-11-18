@@ -8,6 +8,7 @@ import Resfinput from './components/refsinput';
 import PortalComponent from './components/portalcomponent';
 import Userefcomponent from './components/userefcomponent';
 import MouseTracker from './components/mouseTracker';
+import HocA from './components/hocA';
 const data = [
   {name:'jack',sex:'F'},
   {name:'lili',sex:'M'}
@@ -66,6 +67,7 @@ export default class testpage extends React.Component{
         <MouseTracker />
         {/*<FunTestRef ref={this.refinput2} /> 函数组件上不能加ref，因为没有实例也不是DOM元素  */}
         <FunTestRef />
+        <HocA />
       </div>
     )
   }
