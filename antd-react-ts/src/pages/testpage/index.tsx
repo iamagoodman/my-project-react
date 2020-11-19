@@ -9,6 +9,7 @@ import PortalComponent from './components/portalcomponent';
 import Userefcomponent from './components/userefcomponent';
 import MouseTracker from './components/mouseTracker';
 import HocA from './components/hocA';
+import Uselayout from './components/uselayout';
 const data = [
   {name:'jack',sex:'F'},
   {name:'lili',sex:'M'}
@@ -68,6 +69,7 @@ export default class testpage extends React.Component{
         {/*<FunTestRef ref={this.refinput2} /> 函数组件上不能加ref，因为没有实例也不是DOM元素  */}
         <FunTestRef />
         <HocA />
+        <Uselayout />
       </div>
     )
   }

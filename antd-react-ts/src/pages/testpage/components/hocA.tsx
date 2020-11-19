@@ -16,7 +16,6 @@ function widthInput(WrappedComponent:any) {
         value: event.target.value
       })
     }
-
     render() {
       const state = this.state;
       const newProps = {
