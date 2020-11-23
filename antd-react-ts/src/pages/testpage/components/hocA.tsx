@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 function widthInput(WrappedComponent:any) {
   return class extends React.Component {
     constructor(props:any) {

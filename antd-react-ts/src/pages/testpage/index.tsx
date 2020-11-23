@@ -1,6 +1,5 @@
-import React,{ useEffect, useState } from 'react';
+import React from 'react';
 import style from './index.module.less';
-import { Modal } from 'antd';
 import ClassComponent from './components/classcomponent';
 import FunctionComponent from './components/functioncomponent';
 import MyContext from './components/context';
@@ -10,6 +9,7 @@ import Userefcomponent from './components/userefcomponent';
 import MouseTracker from './components/mouseTracker';
 import HocA from './components/hocA';
 import Uselayout from './components/uselayout';
+import MouseMove from './components/mousemove';
 const data = [
   {name:'jack',sex:'F'},
   {name:'lili',sex:'M'}
@@ -53,21 +53,22 @@ export default class testpage extends React.Component{
   }
   render() {
     return (
-      <div ref={this.refcom}>
+      <div className={style.container} ref={this.refcom}>
         <input type="text" ref={this.refinput}/>
         <MyContext.Provider value={data}>
           <ClassComponent />
           <FunctionComponent />
         </MyContext.Provider>
         <Resfinput desc='哈哈哈哈哈哈哈哈' ref={this.refinput2} />
+        {/*<FunTestRef ref={this.refinput2} /> 函数组件上不能加ref，因为没有实例也不是DOM元素,除非像上面一样 用React.forwardRef 创建 */}
+        <FunTestRef />
         <button onClick={()=>{this.handleClick()}}>show refinput2</button>
         <PortalComponent>
           <div>我要被挂在body节点下</div>
         </PortalComponent>
         <Userefcomponent />
         <MouseTracker />
-        {/*<FunTestRef ref={this.refinput2} /> 函数组件上不能加ref，因为没有实例也不是DOM元素  */}
-        <FunTestRef />
+        <MouseMove />
         <HocA />
         <Uselayout />
       </div>

@@ -30,7 +30,7 @@ export function splitarryaswewant(originarray:any[],splitnum:number) {
   let targetarray:any[] = [];
   let arrkey = -1;
   for (let i = 1;i<=originarray.length;i++) {
-    if (i%splitnum == 1){
+    if (i%splitnum === 1){
       arrkey++;
       targetarray[arrkey] = [];
     }

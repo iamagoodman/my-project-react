@@ -34,8 +34,7 @@ export default function () {
   let reqsongurl = async (req:any,index:number) => {
     dispatch(doCurrentSong(req));
     let data = await fetchsongurl({data:{id:req.id}});
-    // let lyric = await fetchlyric({data:{id:req.id}});
-    // console.log(lyric);
+
     dispatch(doFetchLyric.request({id:req.id}))
     dispatch(doSongUrl(data.data.data[0].url));
     dispatch(doPlayStatus(true));

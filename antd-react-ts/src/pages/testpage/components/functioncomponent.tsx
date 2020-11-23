@@ -5,7 +5,6 @@ import Soncomponent from './soncomponent';
 export default function () {
   const [count,setCount] = useState(0);
   const mystatus = useMyHook('456');
-  // const mystatus = false;
   useEffect(() => {
     document.title = count+''
   })
