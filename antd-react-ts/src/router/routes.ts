@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { RouteItem } from "@/types";
-
+import g6Routes from "../pages/g6test/g6Routes";
 const routes:RouteItem[] = [
   {
     key: 'about',
@@ -9,7 +9,7 @@ const routes:RouteItem[] = [
   },
   {
     key: 'home',
-    path: '/home',
+    path: '/home', // 这才是首页别弄忘了。。。
     component: lazy(() => import('../pages/home'))
   },
   {
@@ -24,9 +24,10 @@ const routes:RouteItem[] = [
   },
   {
     key: 'test',
-    path:'/',
+    path:'test',
     component: lazy(() => import('../pages/testpage'))
-  }
+  },
+  ...g6Routes
 ];
 
 export default routes;
