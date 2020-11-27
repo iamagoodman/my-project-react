@@ -70,3 +70,13 @@ export function turntoNum(str: string = '[00:11.48]') {
   let result = min * 60 + second;
   return result;
 }
+
+export function createData(list:any[]): any[] {
+  return list.map(({subChannels , id , ...item}) => {
+    if (subChannels && subChannels.length>0) {
+      return { ...item, id, key:id, subChannels , children: createData(subChannels) }
+    } else {
+      return { ...item, key:id, id}
+    }
+  })
+}

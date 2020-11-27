@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { RouteItem } from "@/types";
 import g6Routes from "../pages/g6test/g6Routes";
+import testcomponentroute from "../pages/testcomponent/testcomponentrouteroute";
 const routes:RouteItem[] = [
   {
     key: 'about',
@@ -27,7 +28,8 @@ const routes:RouteItem[] = [
     path:'test',
     component: lazy(() => import('../pages/testpage'))
   },
-  ...g6Routes
+  ...g6Routes,
+  ...testcomponentroute
 ];
 
 export default routes;
