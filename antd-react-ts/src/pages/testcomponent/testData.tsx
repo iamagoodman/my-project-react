@@ -94,7 +94,24 @@ export const testData:any[] = [
         "channelSec":"41a2dbec2d2c96a67d6e91771d26e47f",
         "channelStatus":0,
         "remark":"反对撒",
-        "subChannels":null,
+        "subChannels":[
+          {
+            "page":1,
+            "size":10,
+            "id":989,
+            "parentId":951,
+            "channelNo":"JFB0000111",
+            "channelName":"testchannel16",
+            "channelSec":"41a2dbec2d2c9fds78e91771d26e47f",
+            "channelStatus":0,
+            "remark":"反对撒",
+            "gmtCreate":"2020-11-26T02:26:42.000+0000",
+            "gmtModify":"2020-11-26T02:27:04.000+0000",
+            "createdBy":"anonymousUser",
+            "updatedBy":"anonymousUser",
+            "subChannels": null
+          }
+        ],
         "gmtCreate":"2020-11-26T02:26:42.000+0000",
         "gmtModify":"2020-11-26T02:27:04.000+0000",
         "createdBy":"anonymousUser",

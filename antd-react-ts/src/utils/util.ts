@@ -80,3 +80,25 @@ export function createData(list:any[]): any[] {
     }
   })
 }
+
+export function getAllChannelName(list: any[], result:any[]): void {
+  list.forEach((item) => {
+    result.push(item.channelName);
+    if (item.subChannels && item.subChannels.length) {
+      getAllChannelName(item.subChannels, result);
+    }
+  })
+}
+
+export class getChannelNameList{
+  result:any[] = [];
+  createData = (list:any[]) => {
+    list.forEach((item) => {
+      this.result.push(item.channelName);
+      if (item.subChannels && item.subChannels.length) {
+        this.createData(item.subChannels);
+      }
+    })
+    return this.result
+  }
+}
