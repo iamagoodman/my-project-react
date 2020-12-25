@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  var data = [{"title":"BlackOX","key":871,"disabled":false,"value":"JFB0000001","children":[{"title":"ox二级渠道","key":991,"disabled":false,"value":"JFB0000010","children":[{"title":"ox三级渠道","key":1001,"disabled":false,"value":"JFB0000011","children":[{"key":1011,"disabled":false,"value":"JFB0000012","title":"ox四级渠道"},{"key":1021,"disabled":false,"value":"JFB0000013","title":"大方设计"},{"key":1031,"disabled":false,"value":"JFB0000014","title":"四级"},{"key":1041,"disabled":false,"value":"JFB0000015","title":"四级四级"}]}]}]},{"key":881,"disabled":false,"value":"JFB0000002","title":"122"},{"key":891,"disabled":false,"value":"JFB0000003","title":"abcd"},{"key":901,"disabled":false,"value":"JFB0000004","title":"ffff"},{"key":931,"disabled":false,"value":"JFB0000005","title":"cc"},{"key":951,"disabled":false,"value":"JFB0000006","title":null},{"key":961,"disabled":true,"value":"JFB0000007","title":"testchannel"}]
+  // console.log(data);
+  var data2 = [{"title":"BlackOX","key":871,"disabled":false,"value":"JFB0000001","children":[{"title":"ox二级渠道","key":991,"disabled":false,"value":"JFB0000010","children":[{"title":"ox三级渠道","key":1001,"disabled":false,"value":"JFB0000011","children":[{"key":1011,"disabled":false,"value":"JFB0000012","title":"ox四级渠道"},{"key":1021,"disabled":false,"value":"JFB0000013","title":"大方设计"},{"key":1031,"disabled":false,"value":"JFB0000014","title":"四级"},{"key":1041,"disabled":false,"value":"JFB0000015","title":"四级四级"}]}]}]},{"key":881,"disabled":false,"value":"JFB0000002","title":"122"},{"key":891,"disabled":false,"value":"JFB0000003","title":"abcd"},{"key":901,"disabled":false,"value":"JFB0000004","title":"ffff"},{"key":931,"disabled":false,"value":"JFB0000005","title":"cc"},{"key":951,"disabled":false,"value":"JFB0000006","title":null},{"key":961,"disabled":true,"value":"JFB0000007","title":"testchannel"},{"title":"新增一级渠道","key":1181,"disabled":false,"value":"JFB0000029","children":[{"title":"新增二级渠道","key":1191,"disabled":false,"value":"JFB0000030","children":[{"title":"新增三级渠道","key":1201,"disabled":false,"value":"JFB0000031","children":[{"key":1211,"disabled":false,"value":"JFB0000032","title":"新增四级渠道"}]}]}]}]
+  var value = 'JFB0000001';
+  function finddata(value,data) {
+    const find = data.filter((item) => (item.value==value));
+    const hasChildren = data.filter((item) => (item.children && item.children.length>0))[0]
+    if (find.length === 0 && hasChildren) {
+      return finddata(value, hasChildren.children);
+    } else {
+      return find
+    }
+  }
+  const current = finddata(value, data);
+  console.log(data2);
+  function getAllValues(data,result){
+    data.forEach((item) => {
+      result.push({value:item.value,title:item.title});
+      if (item.children) {
+        return getAllValues(item.children, result);
+      }
+    })
+    return result
+  }
+  const values = getAllValues(data2,[]);
+  console.log(values);
+
+  function filterChannelName(channelNo,list) {
+    var channel = list.filter(item=>item.value===channelNo)[0];
+    if (channel) {
+      return channel.title
+    } else {
+      for (var i=0;i<list.length;i++) {
+        var item = list[i];
+        if (item.children&&item.children.length>0) {
+          return filterChannelName(channelNo, item.children);
+        }
+      }
+    }
+    // for (var i=0;i<list.length;i++) {
+    //   var item = list[i];
+    //   if (item.value===channelNo) {
+    //     return item.title;
+    //     break;
+    //   }
+    //   if (item.children&&item.children.length>0) {
+    //     return filterChannelName(channelNo, item.children);
+    //   }
+    // }
+    // list.forEach((item)=>{
+    //   if (item.value === channelNo) {
+    //     return item.title
+    //   }else{
+    //     if (item.children&&item.children.length>0) {
+    //       return filterChannelName(channelNo, item.children);
+    //     }
+    //   }
+    // })
+  }
+  var channelName = filterChannelName("JFB0000032",data2);
+  // console.log(channelName);
+</script>
+</body>
+</html>

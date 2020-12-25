@@ -15,5 +15,10 @@ export default [
     key: 'tree',
     path: '/tree',
     component: lazy(() => import('./treeselect'))
+  },
+  {
+    key: 'father',
+    path: '/father',
+    component: lazy(() => import('./fathercomponent'))
   }
 ]
