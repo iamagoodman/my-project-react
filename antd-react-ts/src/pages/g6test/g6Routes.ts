@@ -18,7 +18,27 @@ export default [
   },
   {
     key: 'three',
-    path: '/',
+    path: '/three',
     component: lazy(()=>import('./three'))
+  },
+  {
+    key: 'tupu',
+    path: '/tupu',
+    component: lazy(()=>import('./tupu'))
+  },
+  {
+    key: 'jiedian',
+    path: '/jiedian',
+    component: lazy(()=>import('./jiedian'))
+  },
+  {
+    key: 'zidingyijiedian',
+    path: '/zidingyijiedian',
+    component: lazy(()=>import('./zidingyijiedian'))
+  },
+  {
+    key: 'changeData',
+    path: '/',
+    component: lazy(()=>import('./changeData'))
   }
 ]
